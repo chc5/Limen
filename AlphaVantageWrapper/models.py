@@ -14,7 +14,6 @@ class Parameter(models.Model):
     def __str__(self):
         return self.name
 
-
 class FunctionParameter(models.Model):
     function = models.ForeignKey(Function, on_delete=models.CASCADE)
     parameter = models.ForeignKey(Parameter, on_delete=models.CASCADE)

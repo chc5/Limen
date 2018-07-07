@@ -1,3 +1,6 @@
 from django.contrib import admin
 
-# Register your models here.
+from AlphaVantageWrapper.models import *
+admin.site.register(Function)
+admin.site.register(Parameter)
+admin.site.register(FunctionParameter)

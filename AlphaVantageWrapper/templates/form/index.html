@@ -1,0 +1,32 @@
+{% extends 'form/layout.html' %}
+
+{% block css %}
+  body
+  {
+    background:white;
+    text-align:center;
+  }
+{% endblock %}
+{% block javascript %}
+  function get_function_options(id){
+    ele = document.getElementById(id);
+
+  }
+{% endblock %}
+{% block content %}
+  <h1>Stock Market Retrieval Tool</h1>
+  <!-- {% block function %}
+    {% for function in functions %}
+      <input>{{function.name}}</input>
+    {% endfor %}
+  {% endblock %} -->
+  <div class="container">
+    <form action="/get" method="get">
+      <div>
+        <span class="p-2">Symbol:   <input type="text" name="symbol"> </span>
+        <span class="p-2">Function: <input id="function" type="text" name="function" onkeyup="get_function_options('function')"> </span>
+      </div>
+      <div class="p-2"><input type="submit"></div>
+    </form>
+  </div>
+{% endblock %}

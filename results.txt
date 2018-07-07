@@ -1,0 +1,337 @@
+function
+symbols
+symbol
+interval
+outputsize
+datatype
+from_currency
+to_currency
+market
+series_type
+time_period
+fastlimit
+slowlimit
+fastperiod
+signalperiod
+slowperiod
+fastmatype
+signalmatype
+slowmatype
+fastkperiod
+slowkperiod
+fastdmatype
+slowdmatype
+fastdperiod
+slowdperiod
+matype
+slowkmatype
+timeperiod1
+timeperiod2
+timeperiod3
+nbdevdn
+nbdevup
+acceleration
+maximum
+APO function
+APO interval
+APO series_type
+APO symbol
+APO time_period
+APO fastperiod
+APO matype
+APO slowperiod
+AROON function
+AROON interval
+AROON symbol
+AROON time_period
+AROONOSC function
+AROONOSC interval
+AROONOSC symbol
+AROONOSC time_period
+AD function
+AD interval
+AD symbol
+ADX function
+ADX interval
+ADX symbol
+ADX time_period
+ADXR function
+ADXR interval
+ADXR symbol
+ADXR time_period
+ADOSC function
+ADOSC interval
+ADOSC symbol
+ADOSC fastperiod
+ADOSC slowperiod
+ATR function
+ATR interval
+ATR symbol
+ATR time_period
+BATCH_STOCK_QUOTES function
+BATCH_STOCK_QUOTES symbols
+BATCH_STOCK_QUOTES datatype
+BBANDS function
+BBANDS interval
+BBANDS series_type
+BBANDS symbol
+BBANDS time_period
+BBANDS matype
+BBANDS nbdevdn
+BBANDS nbdevup
+BOP function
+BOP interval
+BOP symbol
+CCI function
+CCI interval
+CCI symbol
+CCI time_period
+CURRENCY_EXCHANGE_RATE from_currency
+CURRENCY_EXCHANGE_RATE function
+CURRENCY_EXCHANGE_RATE to_currency
+CMO function
+CMO interval
+CMO series_type
+CMO symbol
+CMO time_period
+DEMA function
+DEMA interval
+DEMA series_type
+DEMA symbol
+DEMA time_period
+DX function
+DX interval
+DX symbol
+DX time_period
+DIGITAL_CURRENCY_DAILY function
+DIGITAL_CURRENCY_DAILY market
+DIGITAL_CURRENCY_DAILY symbol
+DIGITAL_CURRENCY_WEEKLY function
+DIGITAL_CURRENCY_WEEKLY market
+DIGITAL_CURRENCY_WEEKLY symbol
+DIGITAL_CURRENCY_INTRADAY function
+DIGITAL_CURRENCY_INTRADAY market
+DIGITAL_CURRENCY_INTRADAY symbol
+DIGITAL_CURRENCY_MONTHLY function
+DIGITAL_CURRENCY_MONTHLY market
+DIGITAL_CURRENCY_MONTHLY symbol
+EMA function
+EMA interval
+EMA series_type
+EMA symbol
+EMA time_period
+HT_PHASOR function
+HT_PHASOR interval
+HT_PHASOR series_type
+HT_PHASOR symbol
+HT_SINE function
+HT_SINE interval
+HT_SINE series_type
+HT_SINE symbol
+HT_TRENDLINE function
+HT_TRENDLINE interval
+HT_TRENDLINE series_type
+HT_TRENDLINE symbol
+HT_TRENDMODE function
+HT_TRENDMODE interval
+HT_TRENDMODE series_type
+HT_TRENDMODE symbol
+HT_DCPERIOD function
+HT_DCPERIOD interval
+HT_DCPERIOD series_type
+HT_DCPERIOD symbol
+HT_DCPHASE function
+HT_DCPHASE interval
+HT_DCPHASE series_type
+HT_DCPHASE symbol
+KAMA function
+KAMA interval
+KAMA series_type
+KAMA symbol
+KAMA time_period
+MACD function
+MACD interval
+MACD series_type
+MACD symbol
+MACD fastperiod
+MACD signalperiod
+MACD slowperiod
+MACDEXT function
+MACDEXT interval
+MACDEXT series_type
+MACDEXT symbol
+MACDEXT fastmatype
+MACDEXT fastperiod
+MACDEXT signalmatype
+MACDEXT signalperiod
+MACDEXT slowmatype
+MACDEXT slowperiod
+MAMA function
+MAMA interval
+MAMA series_type
+MAMA symbol
+MAMA fastlimit
+MAMA slowlimit
+MFI function
+MFI interval
+MFI symbol
+MFI time_period
+MIDPRICE function
+MIDPRICE interval
+MIDPRICE symbol
+MIDPRICE time_period
+MIDPOINT function
+MIDPOINT interval
+MIDPOINT series_type
+MIDPOINT symbol
+MIDPOINT time_period
+MINUS_DI function
+MINUS_DI interval
+MINUS_DI symbol
+MINUS_DI time_period
+MINUS_DM function
+MINUS_DM interval
+MINUS_DM symbol
+MINUS_DM time_period
+MOM function
+MOM interval
+MOM series_type
+MOM symbol
+MOM time_period
+NATR function
+NATR interval
+NATR symbol
+NATR time_period
+OBV function
+OBV interval
+OBV symbol
+PPO function
+PPO interval
+PPO series_type
+PPO symbol
+PPO time_period
+PPO fastperiod
+PPO matype
+PPO slowperiod
+PLUS_DI function
+PLUS_DI interval
+PLUS_DI symbol
+PLUS_DI time_period
+PLUS_DM function
+PLUS_DM interval
+PLUS_DM symbol
+PLUS_DM time_period
+RSI function
+RSI interval
+RSI series_type
+RSI symbol
+RSI time_period
+ROC function
+ROC interval
+ROC series_type
+ROC symbol
+ROC time_period
+ROCR function
+ROCR interval
+ROCR series_type
+ROCR symbol
+ROCR time_period
+SAR function
+SAR interval
+SAR symbol
+SAR acceleration
+SAR maximum
+STOCH function
+STOCH interval
+STOCH symbol
+STOCH fastkperiod
+STOCH slowdmatype
+STOCH slowdperiod
+STOCH slowkmatype
+STOCH slowkperiod
+STOCHRSI function
+STOCHRSI interval
+STOCHRSI series_type
+STOCHRSI symbol
+STOCHRSI time_period
+STOCHRSI fastdmatype
+STOCHRSI fastdperiod
+STOCHRSI fastkperiod
+STOCHF function
+STOCHF interval
+STOCHF symbol
+STOCHF fastkperiod
+STOCHF slowdmatype
+STOCHF slowdperiod
+STOCHF slowkmatype
+STOCHF slowkperiod
+SECTOR function
+SMA function
+SMA interval
+SMA series_type
+SMA symbol
+SMA time_period
+TRANGE function
+TRANGE interval
+TRANGE symbol
+TRIX function
+TRIX interval
+TRIX series_type
+TRIX symbol
+TRIX time_period
+TRIMA function
+TRIMA interval
+TRIMA series_type
+TRIMA symbol
+TRIMA time_period
+T3 function
+T3 interval
+T3 series_type
+T3 symbol
+T3 time_period
+TEMA function
+TEMA interval
+TEMA series_type
+TEMA symbol
+TEMA time_period
+TIME_SERIES_DAILY function
+TIME_SERIES_DAILY symbol
+TIME_SERIES_DAILY datatype
+TIME_SERIES_DAILY outputsize
+TIME_SERIES_DAILY_ADJUSTED function
+TIME_SERIES_DAILY_ADJUSTED symbol
+TIME_SERIES_DAILY_ADJUSTED datatype
+TIME_SERIES_DAILY_ADJUSTED outputsize
+TIME_SERIES_WEEKLY function
+TIME_SERIES_WEEKLY symbol
+TIME_SERIES_WEEKLY datatype
+TIME_SERIES_WEEKLY_ADJUSTED function
+TIME_SERIES_WEEKLY_ADJUSTED symbol
+TIME_SERIES_WEEKLY_ADJUSTED datatype
+TIME_SERIES_INTRADAY function
+TIME_SERIES_INTRADAY interval
+TIME_SERIES_INTRADAY symbol
+TIME_SERIES_INTRADAY datatype
+TIME_SERIES_INTRADAY outputsize
+TIME_SERIES_MONTHLY function
+TIME_SERIES_MONTHLY symbol
+TIME_SERIES_MONTHLY datatype
+TIME_SERIES_MONTHLY_ADJUSTED function
+TIME_SERIES_MONTHLY_ADJUSTED symbol
+TIME_SERIES_MONTHLY_ADJUSTED datatype
+ULTOSC function
+ULTOSC interval
+ULTOSC symbol
+ULTOSC timeperiod1
+ULTOSC timeperiod2
+ULTOSC timeperiod3
+WILLR function
+WILLR interval
+WILLR symbol
+WILLR time_period
+WMA function
+WMA interval
+WMA series_type
+WMA symbol
+WMA time_period
+Creating test database for alias 'default'...
