@@ -4,6 +4,8 @@ from AlphaVantageWrapper.models import Function
 from AlphaVantageWrapper.utils import URLBuilder
 from AlphaVantageWrapper.utils import DataRetriever
 import json
+import re
+
 # Create your views here.
 def index(request):
     # return HttpResponse('Hello Worlllld')
@@ -23,3 +25,31 @@ def retrieve_data(request):
         'data': data['Meta Data']
     }
     return render(request, 'form/result.html', context)
+
+def get_function(request):
+    if not request.GET['function']:
+        return None
+    f_name = request.GET['function'].upper()
+    return json.dumps(Function.objects.filter(name__contains=f_name.strip()))
+
+def get_parameters(request):
+    if not request.GET['function']:
+        return None
+    f_name = request.GET['function'].upper()
+    return json.dumps(FunctionParameter.objects.filter(function=f_name))
+
+# parameterSet is a dictionary
+def verify(request):
+    if not request.POST['parameterSet']:
+        return "Error: parameterSet does not exist."
+    parameterSet = request.POST['parameterSet']
+    invalid_parameters = []
+    for parameter in parameterSet.keys():
+        search_result = Parameter.objects.filter(name=parameter)
+        if len(search_result) != 1:
+            return "Error: Parameter not found."
+        else:
+            reg = re.compile(search_result[0].regexp_verifier)
+            if not reg.match(parameterSet[parameter]):
+                invalid_parameters.append(parameter)
+    return invalid_parameters
