@@ -1,18 +1,30 @@
 {% extends 'form/layout.html' %}
 
+{% block links %}
+<script type = "text/javascript" src="import?module=retrieve"></script>
+{% endblock %}
+
 {% block css %}
+<style type='text/css'>
   body
   {
     background:white;
     text-align:center;
   }
+</style>
 {% endblock %}
-{% block javascript %}
-  function get_function_options(id){
-    ele = document.getElementById(id);
 
+{% block javascript %}
+<script type='text/javascript'>
+  function update_function_list(input_id, list_id){
+    if(input_id == 'function_input'){
+      f_name = document.getElementById(input_id).value
+      functions = lookup_function(f_name, list_id)
+    }
   }
+</script>
 {% endblock %}
+
 {% block content %}
   <h1>Stock Market Retrieval Tool</h1>
   <!-- {% block function %}
@@ -24,7 +36,11 @@
     <form action="/get" method="get">
       <div>
         <span class="p-2">Symbol:   <input type="text" name="symbol"> </span>
-        <span class="p-2">Function: <input id="function" type="text" name="function" onkeyup="get_function_options('function')"> </span>
+        <span class="p-2">Function:
+          <input id="function_input" list="function_list" name="function" autocomplete="off" onkeyup="update_function_list('function_input','function_list')">
+          <datalist id="function_list">
+          </datalist>
+        </span>
       </div>
       <div class="p-2"><input type="submit"></div>
     </form>
