@@ -15,6 +15,7 @@ class Parameter(models.Model):
         return self.name
 
 class FunctionParameter(models.Model):
+    id = models.AutoField(primary_key=True)
     function = models.ForeignKey(Function, on_delete=models.CASCADE)
     parameter = models.ForeignKey(Parameter, on_delete=models.CASCADE)
     required = models.BooleanField(default=False)

@@ -1,1 +1,1 @@
-(./manage.py runscript AlphaVantageWrapper/tests.py) > results.txt
+(python3 manage.py shell < script.py) > results.txt

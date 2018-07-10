@@ -16,11 +16,10 @@
 
 {% block javascript %}
 <script type='text/javascript'>
-  function update_function_list(input_id, list_id){
-    if(input_id == 'function_input'){
-      f_name = document.getElementById(input_id).value
-      functions = lookup_function(f_name, list_id)
-    }
+  function update(input_id, list_id, parameter_id){
+    f_name = document.getElementById(input_id).value;
+    lookup_function(f_name, list_id);
+    update_parameters(f_name, list_id, parameter_id);
   }
 </script>
 {% endblock %}
@@ -37,10 +36,13 @@
       <div>
         <span class="p-2">Symbol:   <input type="text" name="symbol"> </span>
         <span class="p-2">Function:
-          <input id="function_input" list="function_list" name="function" autocomplete="off" onkeyup="update_function_list('function_input','function_list')">
+          <input id="function_input" list="function_list" name="function" autocomplete="off" onkeyup="update('function_input','function_list', 'parameter_container')">
           <datalist id="function_list">
           </datalist>
         </span>
+      </div>
+      <div id='parameter_container'>
+
       </div>
       <div class="p-2"><input type="submit"></div>
     </form>

@@ -3,8 +3,10 @@ from django.http import HttpResponse
 from django.http import JsonResponse
 from django.core import serializers
 from AlphaVantageWrapper.models import Function
+from AlphaVantageWrapper.models import FunctionParameter
 from AlphaVantageWrapper.utils import URLBuilder
 from AlphaVantageWrapper.utils import DataRetriever
+from Limen.settings import ALPHA_VANTAGE_API_KEY
 import json
 import re
 
@@ -18,7 +20,7 @@ def index(request):
     return render(request, 'form/index.html', context)
 
 def get(request):
-    url_builder = URLBuilder()
+    url_builder = URLBuilder(ALPHA_VANTAGE_API_KEY)
     url_builder.append_parameters(request.GET)
     url = str(url_builder)
     data = json.loads(DataRetriever().get_data_from(url))
@@ -41,8 +43,8 @@ def lookup_parameters(request):
     if not 'function' in request.GET:
         return HttpResponse('function key does not exist when looking for parameters')
     f_name = request.GET['function'].upper()
-    result = FunctionParameter.objects.filter(function=f_name)
-    data = serializers.serialize("json", result)
+    results = FunctionParameter.objects.values('parameter','required').filter(function=f_name)
+    data = [{'parameter' : result['parameter'], 'required' : result['required']} for result in results]
     response = JsonResponse({'data':data})
     return response
 
