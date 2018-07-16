@@ -33,39 +33,33 @@ function lookup_function(funct, list_id){
 }
 
 function render_parameter_container(data, parameter_id){
-  parameters = document.getElementById(parameter_id);
-  children = parameters.children;
-  console.log(children);
-  // console.log(parameters)
-  // data = data['data']
-  temp = document.createElement('div');
-  name = document.createTextNode('blah');
-  console.log(name, parameter_id);
-  temp.appendChild(name);
-  parameters.appendChild(temp);
-  // console.log(children.length, data.length,data[0]['parameter'])
-  // i = 0
-  // while(children.length < data.length){
-  //   parameter = document.createElement('div')
-  //   text = data[i]['parameter']+": "
-  //   name = document.createTextNode(text)
-  //   console.log(name)
-  //   // input = document.createElement("INPUT")
-  //   // input.id = data[i]['parameter']+"_input"
-  //   parameter.appendChild(name)
-  //   // parameter.appendChild(input)
-  //   parameters.appendChild(parameter)
-  //   i++
-  // }
-  // console.log(parameters)
-  // for(; i < data.length; i++){
-  //   parameter = parameters[i]
-  //   parameter[0].value = data[i]['parameter']+": "
-  //   parameter[1].id = data[i]['parameter']+"_input"
-  // }
-  // while(data.length < children.length){
-  //   parameters.removeChild(parameters.lastChild)
-  // }
+  parameters = document.getElementById(parameter_id)
+  children = parameters.children
+  data = data['data']
+  i = 0
+  while(children.length < data.length){
+    parameter = document.createElement('div')
+    span = document.createElement('span')
+    text = document.createTextNode(data[i]['parameter']+": \t")
+    // console.log(temp,"hoefhoa")
+    input = document.createElement('input')
+    input.setAttribute('id', data[i]['parameter'])
+    span.append(text)
+    parameter.appendChild(span)
+    parameter.appendChild(input)
+    // console.log(parameter)
+    parameters.append(parameter)
+    i++
+  }
+  for(; i < data.length; i++){
+    parameter = parameters.children[i]
+    parameter.children[0].innerHTML = data[i]['parameter']+": \t"
+    parameter.children[1].setAttribute('id', data[i]['parameter'])
+  }
+  while(data.length < children.length){
+    parameters.removeChild(parameters.lastChild);
+  }
+  console.log(parameters)
 }
 
 function lookup_parameters(funct, parameter_id){
@@ -76,7 +70,7 @@ function lookup_parameters(funct, parameter_id){
         console.log('There is a problem. Status Code:', response.status);
       }
       response.json().then(function(data){
-        console.log(data);
+        // console.log(data);
         render_parameter_container(data, parameter_id);
       })
     })
