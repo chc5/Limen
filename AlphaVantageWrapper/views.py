@@ -21,6 +21,7 @@ def index(request):
 
 def get(request):
     url_builder = URLBuilder(ALPHA_VANTAGE_API_KEY)
+    print(request.GET)
     url_builder.append_parameters(request.GET)
     url = str(url_builder)
     data = json.loads(DataRetriever().get_data_from(url))
@@ -43,7 +44,7 @@ def lookup_parameters(request):
     if not 'function' in request.GET:
         return HttpResponse('function key does not exist when looking for parameters')
     f_name = request.GET['function'].upper()
-    results = FunctionParameter.objects.values('parameter','required').filter(function=f_name)
+    results = FunctionParameter.objects.values('parameter','required').filter(function=f_name).exclude(parameter__in=['function','symbol'])
     data = [{'parameter' : result['parameter'], 'required' : result['required']} for result in results]
     response = JsonResponse({'data':data})
     return response

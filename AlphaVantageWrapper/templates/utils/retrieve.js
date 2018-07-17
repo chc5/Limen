@@ -32,7 +32,7 @@ function lookup_function(funct, list_id){
     })
 }
 
-function render_parameter_container(data, parameter_id){
+function render_parameter_container(data, parameter_id, form_id){
   parameters = document.getElementById(parameter_id)
   children = parameters.children
   data = data['data']
@@ -41,20 +41,18 @@ function render_parameter_container(data, parameter_id){
     parameter = document.createElement('div')
     span = document.createElement('span')
     text = document.createTextNode(data[i]['parameter']+": \t")
-    // console.log(temp,"hoefhoa")
     input = document.createElement('input')
-    input.setAttribute('id', data[i]['parameter'])
+    input.setAttribute('name', data[i]['parameter'])
     span.append(text)
     parameter.appendChild(span)
     parameter.appendChild(input)
-    // console.log(parameter)
     parameters.append(parameter)
     i++
   }
   for(; i < data.length; i++){
     parameter = parameters.children[i]
     parameter.children[0].innerHTML = data[i]['parameter']+": \t"
-    parameter.children[1].setAttribute('id', data[i]['parameter'])
+    parameter.children[1].setAttribute('name', data[i]['parameter'])
   }
   while(data.length < children.length){
     parameters.removeChild(parameters.lastChild);
@@ -62,7 +60,8 @@ function render_parameter_container(data, parameter_id){
   console.log(parameters)
 }
 
-function lookup_parameters(funct, parameter_id){
+function lookup_parameters(funct, parameter_id, form_id){
+  console.log(form_id)
   url = '/lookup?var=parameter&function=' + funct;
   fetch(url)
     .then(function(response){
@@ -71,7 +70,7 @@ function lookup_parameters(funct, parameter_id){
       }
       response.json().then(function(data){
         // console.log(data);
-        render_parameter_container(data, parameter_id);
+        render_parameter_container(data, parameter_id, form_id);
       })
     })
     .catch(function(err){
@@ -83,11 +82,12 @@ function hide_parameter_container(parameter_id){
   console.log('Hiding parameter container...');
 }
 
-function update_parameters(funct, list_id, parameter_id){
+function update_parameters(funct, list_id, parameter_id, form_id){
+  // console.log(form_id)
   children = document.getElementById(list_id).children;
   if(children.length > 0 && children[0].value == funct){
     console.log('passed the condition for updating parameters');
-    lookup_parameters(funct, parameter_id);
+    lookup_parameters(funct, parameter_id, form_id);
   }
   else{
     hide_parameter_container(parameter_id);

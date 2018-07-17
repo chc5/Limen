@@ -8,18 +8,20 @@
 <style type='text/css'>
   body
   {
-    background:white;
+    background:black;
     text-align:center;
+    color:white;
   }
 </style>
 {% endblock %}
 
 {% block javascript %}
 <script type='text/javascript'>
-  function update(input_id, list_id, parameter_id){
+  function update(input_id, list_id, parameter_id, form_id){
     f_name = document.getElementById(input_id).value;
     lookup_function(f_name, list_id);
-    update_parameters(f_name, list_id, parameter_id);
+    // console.log(form_id);
+    update_parameters(f_name, list_id, parameter_id, form_id);
   }
 </script>
 {% endblock %}
@@ -32,18 +34,23 @@
     {% endfor %}
   {% endblock %} -->
   <div class="container">
-    <form action="/get" method="get">
-      <div>
+    <form id="form" action="/get" method="get">
+      <fieldset>
         <span class="p-2">Symbol:   <input type="text" name="symbol"> </span>
         <span class="p-2">Function:
-          <input id="function_input" list="function_list" name="function" autocomplete="off" onkeyup="update('function_input','function_list', 'parameter_container')">
+          <input id="function_input"
+                 list="function_list"
+                 name="function"
+                 autocomplete="off"
+                 onkeyup="update('function_input','function_list', 'parameters', 'search_form')"
+          >
           <datalist id="function_list">
           </datalist>
         </span>
-      </div>
-      <div id='parameter_container'>
+      </fieldset>
+      <fieldset id='parameters'>
 
-      </div>
+      </fieldset>
       <div class="p-2"><input type="submit"></div>
     </form>
   </div>
