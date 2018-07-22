@@ -1,6 +1,40 @@
 import urllib.request
 import urllib.parse
+import matplotlib
+matplotlib.use('Agg')
+import matplotlib.pyplot as plt
+import io
 
+class GraphGenerator():
+    xlabel = 'X'
+    ylabel = 'Y'
+    title = 'Title'
+    def __init__(self):
+        pass
+    def plot(self, x, y):
+        buffer = io.BytesIO()
+        plt.scatter(x, y)
+        plt.xlabel(self.xlabel)
+        plt.ylabel(self.ylabel)
+        plt.savefig(buffer, format="png")
+        return buffer
+
+class AlphaVantageParser():
+    def __init__(self, json_result):
+        self.data = {}
+        for key in json_result.keys():
+            if not key == 'Meta Data':
+                for date in json_result[key].keys():
+                    self.data[date] = json_result[key][date]
+    def get_data(self):
+        return self.data
+    def get_x(self):
+        return self.data.keys()
+    def get_y(self):
+        y = []
+        for key in self.data.keys():
+            y.append(self.data[key]['1. open'])
+        return y
 
 class DataRetriever():
     def get_data_from(self, url):
