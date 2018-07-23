@@ -1,3 +1,10 @@
+function update(input_id, list_id, parameter_id, form_id){
+  f_name = document.getElementById(input_id).value;
+  lookup_function(f_name, list_id);
+  // console.log(form_id);
+  update_parameters(f_name, list_id, parameter_id, form_id);
+}
+
 function render_function_list(data, list_id){
   function_list = document.getElementById(list_id);
   children = function_list.children;

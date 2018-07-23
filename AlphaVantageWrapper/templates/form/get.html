@@ -1,7 +1,9 @@
 {% extends 'form/layout.html' %}
 
 {% block links %}
+  <script src="https://d3js.org/d3.v5.min.js"></script>
   <script type = "text/javascript" src="import?module=retrieve"></script>
+
 {% endblock %}
 
 {% block css %}
@@ -12,6 +14,16 @@
       text-align:center;
       color:white;
     }
+    .chart rect {
+      fill: steelblue;
+    }
+
+    .chart text {
+      fill: white;
+      font: 10px sans-serif;
+      text-anchor: end;
+    }
+
   </style>
 {% endblock %}
 
@@ -19,33 +31,32 @@
   <script type='text/javascript'>
   </script>
 {% endblock %}
-
 {% block content %}
-  <!-- <h1>Stock Market Retrieval Tool</h1> -->
-  <!-- {% block function %}
-    {% for function in functions %}
-      <input>{{function.name}}</input>
-    {% endfor %}
-  {% endblock %} -->
+
   <div class="container">
     <form id="form" action="/get" method="get">
       <fieldset>
-        <span class="p-2">Symbol:   <input type="text" name="symbol"> </span>
+        <span class="p-2">Symbol:   <input type="text" name="symbol" value=""> </span>
         <span class="p-2">Function:
           <input id="function_input"
                  list="function_list"
                  name="function"
                  autocomplete="off"
                  onkeyup="update('function_input','function_list', 'parameters', 'search_form')"
+                 value=""
           >
           <datalist id="function_list">
           </datalist>
         </span>
       </fieldset>
       <fieldset id='parameters'>
-
       </fieldset>
       <div class="p-2"><input type="submit"></div>
     </form>
   </div>
+{% endblock %}
+{% block end-javascript %}
+  <script type='text/javascript'>
+    var data = {{data}}
+  </script>
 {% endblock %}

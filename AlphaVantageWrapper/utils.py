@@ -1,23 +1,5 @@
 import urllib.request
 import urllib.parse
-import matplotlib
-matplotlib.use('Agg')
-import matplotlib.pyplot as plt
-import io
-
-class GraphGenerator():
-    xlabel = 'X'
-    ylabel = 'Y'
-    title = 'Title'
-    def __init__(self):
-        pass
-    def plot(self, x, y):
-        buffer = io.BytesIO()
-        plt.scatter(x, y)
-        plt.xlabel(self.xlabel)
-        plt.ylabel(self.ylabel)
-        plt.savefig(buffer, format="png")
-        return buffer
 
 class AlphaVantageParser():
     def __init__(self, json_result):
@@ -29,11 +11,13 @@ class AlphaVantageParser():
     def get_data(self):
         return self.data
     def get_x(self):
-        return self.data.keys()
+        return [key for key in sorted(self.data.keys())]
     def get_y(self):
         y = []
-        for key in self.data.keys():
-            y.append(self.data[key]['1. open'])
+        for key in sorted(self.data.keys()):
+            y.append(float(self.data[key]['5. adjusted close']))
+            # print(key,self.data[key]['4. close'])
+        # print(sorted(self.data.keys()))
         return y
 
 class DataRetriever():

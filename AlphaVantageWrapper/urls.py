@@ -9,6 +9,5 @@ urlpatterns = [
     path('lookup', views.lookup),
     path('import', views.import_m),
     path('verify', views.verify),
-    path('graph', views.graph),
     path('', views.index)
 ]
