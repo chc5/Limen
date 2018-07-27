@@ -8,17 +8,24 @@ class AlphaVantageParser():
             if not key == 'Meta Data':
                 for date in json_result[key].keys():
                     self.data[date] = json_result[key][date]
+        if 'Meta Data' in json_result.keys():
+            self.metadata = json_result['Meta Data']
+        self.data = self.__divide_into_groups()
+    def __divide_into_groups(self):
+        print(self.data)
+        groups = {}
+        for date in self.data.keys():
+            for group in self.data[date].keys():
+                if group not in groups:
+                    groups[group] = {date: self.data[date][group]}
+                else:
+                    groups[group][date] = self.data[date][group]
+        if self.metadata:
+            groups['Meta Data'] = self.metadata;
+        return groups
+
     def get_data(self):
         return self.data
-    def get_x(self):
-        return [key for key in sorted(self.data.keys())]
-    def get_y(self):
-        y = []
-        for key in sorted(self.data.keys()):
-            y.append(float(self.data[key]['5. adjusted close']))
-            # print(key,self.data[key]['4. close'])
-        # print(sorted(self.data.keys()))
-        return y
 
 class DataRetriever():
     def get_data_from(self, url):

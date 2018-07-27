@@ -27,8 +27,12 @@ def get(request):
     result = json.loads(DataRetriever().get_data_from(url))
     parser = AlphaVantageParser(result)
     data = parser.get_data()
-    json_response = JsonResponse(data)
-    return json_response
+    context = {
+        'title': 'Limen',
+        'data': data
+    }
+    # json_response = JsonResponse(data)
+    return render(request, 'form/get.html', context)
 
 
 def lookup_function(request):
@@ -81,5 +85,9 @@ def import_m(request):
         return HttpResponse('Module key not found')
     if request.GET['module'] == 'retrieve':
         return render(request, 'utils/retrieve.js')
+    elif request.GET['module'] == 'pull':
+        return render(request, 'utils/pull.js')
+    elif request.GET['module'] == 'graph':
+        return render(request, 'utils/graph.js')
     else:
         return  HttpResponse('Error: Module Not Found')

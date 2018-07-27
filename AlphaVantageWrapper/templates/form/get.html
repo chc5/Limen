@@ -3,6 +3,7 @@
 {% block links %}
   <script src="https://d3js.org/d3.v5.min.js"></script>
   <script type = "text/javascript" src="import?module=retrieve"></script>
+  <script type = "text/javascript" src="import?module=graph"></script>
 
 {% endblock %}
 
@@ -32,7 +33,6 @@
   </script>
 {% endblock %}
 {% block content %}
-
   <div class="container">
     <form id="form" action="/get" method="get">
       <fieldset>
@@ -54,9 +54,11 @@
       <div class="p-2"><input type="submit"></div>
     </form>
   </div>
+  <div class="container" id="graphs"></div>
 {% endblock %}
 {% block end-javascript %}
   <script type='text/javascript'>
-    var data = {{data}}
+    data_manager = new DataManager({{data|safe}})
+    data_manager.render("graphs")
   </script>
 {% endblock %}
