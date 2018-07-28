@@ -31,8 +31,11 @@ def get(request):
         'title': 'Limen',
         'data': data
     }
+    x = [date for date in sorted(data['4. close'])]
+    y = [data['4. close'][date] for date in sorted(data['4. close'])]
     # json_response = JsonResponse(data)
-    return render(request, 'form/get.html', context)
+    return request_graph(x, y)
+    # return render(request, 'form/get.html', context)
 
 
 def lookup_function(request):

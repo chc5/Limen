@@ -12,7 +12,6 @@ class AlphaVantageParser():
             self.metadata = json_result['Meta Data']
         self.data = self.__divide_into_groups()
     def __divide_into_groups(self):
-        print(self.data)
         groups = {}
         for date in self.data.keys():
             for group in self.data[date].keys():

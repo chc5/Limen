@@ -24,7 +24,10 @@ function render_function_list(data, list_id){
 
 function lookup_function(funct, list_id){
   let url = '/lookup?var=function&function=' + funct;
-  return fetch(url)
+  return fetch(url,
+    {
+      headers: {"Content-Type": "application/json; charset=utf-8"}
+    })
     .then(function(response){
       if(response.status != 200){
         console.log('There is a problem. Status Code:', response.status);
@@ -68,7 +71,10 @@ function render_parameter_container(data, parameter_id, form_id){
 function lookup_parameters(funct, parameter_id, form_id){
   // console.log(form_id)
   let url = '/lookup?var=parameter&function=' + funct;
-  fetch(url)
+  fetch(url,
+    {
+      headers: {"Content-Type": "application/json; charset=utf-8"}
+    })
     .then(function(response){
       if(response.status != 200){
         console.log('There is a problem. Status Code:', response.status);
