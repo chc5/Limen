@@ -47,33 +47,26 @@ class DataManager{
     this.render_graph(e);
   }
   render_graph(e){
-    // let img_ele = document.createElement("img");
-    // var BreakException = {};
-    // this.get_keys().forEach((key)=>{
-    //   let dataset = {
-    //     'x':[],
-    //     'y':[]
-    //   };
-    //   for (var k in this.data[key]){
-    //     if (this.data[key].hasOwnProperty(k)){
-    //       dataset['x'].push(k)
-    //       dataset['y'].push(this.data[key][k])
-    //     }
-    //   }
-    //   this.__graph(dataset, e);
-    //   // throw BreakException;
-    // });
-    let dataset = {
-        'x':[],
-        'y':[]
-      };
-    for (var k in this.data['2. high']){
-      if (this.data['4. close'].hasOwnProperty(k)){
-        dataset['x'].push(k)
-        dataset['y'].push(this.data['5. adjusted close'][k])
+    this.get_keys().forEach((key)=>{
+      let img_ele = document.createElement("div");
+      let dataset = [
+        {
+          'x':[],
+          'y':[],
+          mode: 'markers',
+          type: 'scatter'
+        }
+      ];
+
+      for (var k in this.data[key]){
+        if (this.data[key].hasOwnProperty(k)){
+          dataset[0]['x'].push(k)
+          dataset[0]['y'].push(this.data[key][k])
+        }
       }
-    }
-    this.__graph(dataset, e);
+      Plotly.newPlot(img_ele, dataset);
+      e.appendChild(img_ele);
+    });
   }
   __graph(dataset, outputElement){
     let data = new FormData();

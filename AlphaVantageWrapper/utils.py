@@ -16,9 +16,9 @@ class AlphaVantageParser():
         for date in self.data.keys():
             for group in self.data[date].keys():
                 if group not in groups:
-                    groups[group] = {date: self.data[date][group]}
+                    groups[group] = {date: float(self.data[date][group])}
                 else:
-                    groups[group][date] = self.data[date][group]
+                    groups[group][date] = float(self.data[date][group])
         if self.metadata:
             groups['Meta Data'] = self.metadata;
         return groups
