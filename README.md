@@ -7,5 +7,6 @@
 
 ## Timeline (Work in Progress)
  - Finished creating the basis of a wrapper for AlphaVantage API.
- - Design graphs on stock prices that uses functions from the API.
+ - Build my website on React.
+ - Plot stock prices on graphs using plotly.
  - Build a predictor based on these functions from the API.

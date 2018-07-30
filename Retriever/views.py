@@ -2,13 +2,12 @@ from django.shortcuts import render
 from django.http import HttpRequest
 from django.http import HttpResponse
 from django.http import JsonResponse
-from AlphaVantageWrapper.models import Function
-from AlphaVantageWrapper.models import FunctionParameter
-from AlphaVantageWrapper.utils import URLBuilder
-from AlphaVantageWrapper.utils import DataRetriever
-from AlphaVantageWrapper.utils import AlphaVantageParser
+from Retriever.models import Function
+from Retriever.models import FunctionParameter
+from Retriever.utils import URLBuilder
+from Retriever.utils import DataRetriever
+from Retriever.utils import AlphaVantageParser
 from Limen.settings import ALPHA_VANTAGE_API_KEY
-from Regressor.views import request_graph
 import json
 import re
 
