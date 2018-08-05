@@ -1,8 +1,9 @@
 import { combineReducers } from 'redux';
-import TimeSeriesReducer from './reducer_time_series';
-
+import TimeSeriesReducer from './reducers_time_series';
+import GraphTypesReducer from './reducers_graph';
 const rootReducer = combineReducers({
-  timeSeries: TimeSeriesReducer
+  timeSeriesList: TimeSeriesReducer,
+  selectedGraphTypes: GraphTypesReducer
 });
 
 export default rootReducer;

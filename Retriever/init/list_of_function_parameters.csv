@@ -45,7 +45,6 @@ ATR, time_period, True
 
 BATCH_STOCK_QUOTES, function, True
 BATCH_STOCK_QUOTES, symbols, True
-BATCH_STOCK_QUOTES, datatype, False
 
 BBANDS, function, True
 BBANDS, interval, True
@@ -319,35 +318,25 @@ TEMA, time_period, True
 
 TIME_SERIES_DAILY, function, True
 TIME_SERIES_DAILY, symbol, True
-TIME_SERIES_DAILY, datatype, False
-TIME_SERIES_DAILY, outputsize, False
 
 TIME_SERIES_DAILY_ADJUSTED, function, True
 TIME_SERIES_DAILY_ADJUSTED, symbol, True
-TIME_SERIES_DAILY_ADJUSTED, datatype, False
-TIME_SERIES_DAILY_ADJUSTED, outputsize, False
 
 TIME_SERIES_WEEKLY, function, True
 TIME_SERIES_WEEKLY, symbol, True
-TIME_SERIES_WEEKLY, datatype, False
 
 TIME_SERIES_WEEKLY_ADJUSTED, function, True
 TIME_SERIES_WEEKLY_ADJUSTED, symbol, True
-TIME_SERIES_WEEKLY_ADJUSTED, datatype, False
 
 TIME_SERIES_INTRADAY, function, True
 TIME_SERIES_INTRADAY, interval, True
 TIME_SERIES_INTRADAY, symbol, True
-TIME_SERIES_INTRADAY, datatype, False
-TIME_SERIES_INTRADAY, outputsize, False
 
 TIME_SERIES_MONTHLY, function, True
 TIME_SERIES_MONTHLY, symbol, True
-TIME_SERIES_MONTHLY, datatype, False
 
 TIME_SERIES_MONTHLY_ADJUSTED, function, True
 TIME_SERIES_MONTHLY_ADJUSTED, symbol, True
-TIME_SERIES_MONTHLY_ADJUSTED, datatype, False
 
 ULTOSC, function, True
 ULTOSC, interval, True

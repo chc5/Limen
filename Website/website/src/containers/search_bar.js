@@ -18,6 +18,7 @@ class SearchBar extends Component {
 
   onFormSubmit(event){
     event.preventDefault();
+
     this.props.fetchTimeSeries(this.state.term);
     this.setState({ term: '' });
   }

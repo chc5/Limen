@@ -4,6 +4,7 @@ from django.http import HttpResponse
 from django.http import JsonResponse
 from Retriever.models import Function
 from Retriever.models import FunctionParameter
+from Retriever.models import TimeSeries
 from Retriever.utils import URLBuilder
 from Retriever.utils import DataRetriever
 from Retriever.utils import AlphaVantageParser
@@ -20,20 +21,20 @@ def index(request):
     return render(request, 'form/index.html', context)
 
 def get(request):
+    if not 'symbol' in request.GET:
+        return HttpResponseNotFound('Symbol does not exist.')
     url_builder = URLBuilder(ALPHA_VANTAGE_API_KEY)
     url_builder.append_parameters(request.GET)
-    url = str(url_builder)
-    result = json.loads(DataRetriever().get_data_from(url))
-    parser = AlphaVantageParser(result)
-    data = parser.get_data()
-    context = {
-        'title': 'Limen',
-        'data': data
-    }
-    # x = [date for date in sorted(data['4. close'])]
-    # y = [float(data['4. close'][date]) for date in x]
-    # return request_graph(x, y)
-    return render(request, 'form/get.html', context)
+    data = {}
+    for symbol in TimeSeries.objects.all():
+        name = str(symbol)
+        url_builder.append_parameter('function', name)
+        url = str(url_builder)
+        print(url)
+        result = json.loads(DataRetriever().get_data_from(url))
+        parser = AlphaVantageParser(result)
+        data[name] = parser.get_data()
+    return JsonResponse({'data': data})
 
 
 def lookup_function(request):
