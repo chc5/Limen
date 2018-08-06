@@ -5,6 +5,6 @@ export default function(state = null, action){
     case FETCH_TIME_SERIES:
       return action.payload.data["data"];
     default:
-      return null;
+      return state;
   }
 }

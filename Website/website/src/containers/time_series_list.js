@@ -28,6 +28,11 @@ class TimeSeriesList extends Component{
     );
   }
 
+  // shouldComponentUpdate(nextProps) {
+  //   console.log("Should Component Update thingy", nextProps);
+  //   return (this.props.timeSeriesList !== nextProps.timeSeriesList);
+  // }
+
   renderTimeSeries(timeSeriesName){
     let metaDataDisplay = this.renderMetaData(this.props.timeSeriesList[timeSeriesName][META_DATA]);
     let graphDisplay = this.renderGraph(timeSeriesName);
@@ -47,6 +52,7 @@ class TimeSeriesList extends Component{
     );
   }
   render(){
+    console.log("Rendering Time Series List")
     return (
       <div>
         <div>
@@ -60,8 +66,8 @@ class TimeSeriesList extends Component{
   }
 }
 
-function mapStateToProps({ timeSeriesList, selectedGraphTypes }){
-  return { timeSeriesList, selectedGraphTypes };
+function mapStateToProps({ timeSeriesList }){
+  return { timeSeriesList };
 }
 
 export default connect (mapStateToProps) (TimeSeriesList);

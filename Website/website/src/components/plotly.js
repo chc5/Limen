@@ -1,11 +1,18 @@
 import React, { Component } from 'react';
 import Plot from 'react-plotly.js';
 import { connect } from 'react-redux';
-
+import { GRAPH_TYPES } from '../containers/selection_bar';
 class Plotly extends Component {
   constructor(props){
     super(props);
-    this.toPlotlyData.bind(this);
+    this.toPlotlyData = this.toPlotlyData.bind(this);
+    this.getTraceName = this.getTraceName.bind(this);
+  }
+  getTraceName(keyName){
+    const result = Object.keys(GRAPH_TYPES).filter(key => {
+      return GRAPH_TYPES[key].key === keyName;
+    });
+    return result.length > 0 ? GRAPH_TYPES[result[0]].name : "undefined";
   }
   toPlotlyData(){
     const timeSeries = this.props.timeSeriesList[this.props.timeSeriesName];
@@ -21,7 +28,8 @@ class Plotly extends Component {
         'x': x,
         'y': y,
         'type': 'scatter',
-        'mode': 'markers'
+        'mode': 'markers',
+        'name': this.getTraceName(type)
       };
     });
     return plotlyData;

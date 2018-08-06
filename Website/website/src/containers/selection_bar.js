@@ -11,9 +11,8 @@ export const CLOSE = { name:"Closing Price", key:"4. close" };
 export const ADJUSTED_CLOSE = { name:"Adjusted Closing Price", key:"5. adjusted close" };
 export const VOLUME = { name:"Volume", key:"6. volume" };
 export const DIVIDEND = { name:"Dividend", key:"7. dividend amount" };
-export const SPLIT_COEFFICIENT = { name:"Split Coefficent", key:"8. split coefficient" };
 
-export const GRAPH_TYPES = { OPEN, HIGH, LOW, CLOSE, ADJUSTED_CLOSE, VOLUME, DIVIDEND, SPLIT_COEFFICIENT };
+export const GRAPH_TYPES = { OPEN, HIGH, LOW, CLOSE, ADJUSTED_CLOSE, VOLUME, DIVIDEND };
 
 class SelectionBar extends Component {
   constructor(props){
