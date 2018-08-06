@@ -8,7 +8,7 @@ export const OPEN = { name:"Opening Price", key:"1. open" };
 export const HIGH = { name:"Highest Price", key:"2. high" };
 export const LOW = { name:"Lowest Price", key:"3. low" };
 export const CLOSE = { name:"Closing Price", key:"4. close" };
-export const ADJUSTED_CLOSE = { name:"Adjusted Closing Price", key:"5. adjusted_close" };
+export const ADJUSTED_CLOSE = { name:"Adjusted Closing Price", key:"5. adjusted close" };
 export const VOLUME = { name:"Volume", key:"6. volume" };
 export const DIVIDEND = { name:"Dividend", key:"7. dividend amount" };
 export const SPLIT_COEFFICIENT = { name:"Split Coefficent", key:"8. split coefficient" };
@@ -19,7 +19,7 @@ class SelectionBar extends Component {
   constructor(props){
     super(props);
     this.renderCol = this.renderCol.bind(this);
-    this.props.updateGraph(ADJUSTED_CLOSE);
+    this.props.updateGraph(ADJUSTED_CLOSE.key);
   }
   onClick(type, event){
     this.props.updateGraph(type);

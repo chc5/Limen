@@ -1,12 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Plotly from '../components/plotly';
+import MetaData from './meta_data';
 
 export const META_DATA = "Meta Data";
-export const INFORMATION = "1. Information";
-export const SYMBOL = "2. Symbol";
-export const LAST_UPDATE = "3. Last Refreshed";
-export const TIME_ZONE = "4. Time Zone";
 
 class TimeSeriesList extends Component{
   constructor(props){
@@ -17,29 +14,25 @@ class TimeSeriesList extends Component{
     this.renderGraph = this.renderGraph.bind(this);
   }
 
-  renderGraph(timeSeries){
-    console.log("renderGraph moment",timeSeries);
+  renderGraph(timeSeriesName){
+    console.log("renderGraph moment",timeSeriesName);
 
     return (
-      <Plotly/>
+      <Plotly timeSeriesName={timeSeriesName} />
     );
   }
 
   renderMetaData(metaData){
     return(
-      <div key={metaData[INFORMATION]}>
-        <h1 key={SYMBOL}> {metaData[SYMBOL]} </h1>
-        <h2 key={INFORMATION}> {metaData[INFORMATION]} </h2>
-        <h3 key={LAST_UPDATE}> {metaData[LAST_UPDATE]} {metaData[TIME_ZONE]}</h3>
-      </div>
+      <MetaData metaData={metaData} />
     );
   }
 
-  renderTimeSeries(timeSeries){
-    let metaDataDisplay = this.renderMetaData(this.props.timeSeriesList[timeSeries][META_DATA]);
-    let graphDisplay = this.renderGraph(this.props.timeSeriesList[timeSeries]);
+  renderTimeSeries(timeSeriesName){
+    let metaDataDisplay = this.renderMetaData(this.props.timeSeriesList[timeSeriesName][META_DATA]);
+    let graphDisplay = this.renderGraph(timeSeriesName);
     return (
-      <div key={timeSeries}>
+      <div key={timeSeriesName}>
         {metaDataDisplay}
         {graphDisplay}
       </div>
