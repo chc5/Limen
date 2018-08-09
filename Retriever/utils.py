@@ -1,38 +1,53 @@
 import urllib.request
 import urllib.parse
-
+from django.http import HttpRequest
+from Regressor.utils import Regressor
 class AlphaVantageParser():
+    meta_tag = 'Meta Data'
+    predict_tag = 'PREDICT'
+
     def __init__(self, json_result):
         self.data = {}
         for key in json_result.keys():
-            if not key == 'Meta Data':
+            if not key == self.meta_tag:
                 for date in json_result[key].keys():
                     self.data[date] = json_result[key][date]
-        if 'Meta Data' in json_result.keys():
-            self.metadata = json_result['Meta Data']
+        if self.meta_tag in json_result.keys():
+            self.metadata = json_result[self.meta_tag]
         self.data = self.__divide_into_groups()
+        self.predict_groups()
+        if self.metadata:
+            self.data[self.meta_tag] = self.metadata;
 
     def __divide_into_groups(self):
         groups = {}
         for date in self.data.keys():
             for group in self.data[date].keys():
                 if group not in groups:
-                    groups[group] = {date: float(self.data[date][group])}
+                    groups[group] = {'data':{'x': [date], 'y': [float(self.data[date][group])]}}
                 else:
-                    groups[group][date] = float(self.data[date][group])
-        if self.metadata:
-            groups['Meta Data'] = self.metadata;
+                    groups[group]['data']['x'].append(date)
+                    groups[group]['data']['y'].append(float(self.data[date][group]))
         return groups
+
+    def predict_groups(self):
+        for group in self.data:
+            regressor = Regressor()
+            regressor.fit_time_series(self.data[group]['data']['x'], self.data[group]['data']['y'])
+            y_set = regressor.predict_time_series()
+            self.data[group]['predicted'] = {'y': y_set}
 
     def get_data(self):
         return self.data
 
 class DataRetriever():
+
     def get_data_from(self, url):
         f = urllib.request.urlopen(url)
         return f.read().decode('utf-8')
 
 class URLBuilder():
+
     def __init__(self, api_key):
         self.base_url = 'https://www.alphavantage.co/query?'
         self.parameters = {'apikey': api_key}

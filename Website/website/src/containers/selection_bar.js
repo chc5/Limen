@@ -25,17 +25,17 @@ class SelectionBar extends Component {
   }
   renderCol(type){
     return (
-      <div className="col"
+      <button className="btn btn-secondary active"
            key={GRAPH_TYPES[type].key}
            onClick={this.onClick.bind(this, GRAPH_TYPES[type].key)}>
         {GRAPH_TYPES[type].name}
-      </div>
+      </button>
     );
   }
 
   render(){
     return(
-      <div className="row">
+      <div className="btn-group-vertical" data-toggle="btn">
         { Object.keys(GRAPH_TYPES).map(this.renderCol) }
       </div>
     );

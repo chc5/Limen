@@ -1,5 +1,4 @@
 from django.shortcuts import render
-from django.http import HttpRequest
 from django.http import HttpResponse
 from django.http import JsonResponse
 from Retriever.models import Function
@@ -34,7 +33,7 @@ def get(request):
         result = json.loads(DataRetriever().get_data_from(url))
         parser = AlphaVantageParser(result)
         data[name] = parser.get_data()
-    return JsonResponse({'data': data})
+    return JsonResponse({ 'data': data })
 
 
 def lookup_function(request):
