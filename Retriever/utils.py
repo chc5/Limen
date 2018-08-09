@@ -28,6 +28,8 @@ class AlphaVantageParser():
                 else:
                     groups[group]['data']['x'].append(date)
                     groups[group]['data']['y'].append(float(self.data[date][group]))
+        for group in groups:
+            groups[group]['data']['x'], groups[group]['data']['y'] = zip(*sorted(zip(groups[group]['data']['x'], groups[group]['data']['y'])))
         return groups
 
     def predict_groups(self):

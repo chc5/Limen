@@ -6,6 +6,7 @@ class Plotly extends Component {
   constructor(props){
     super(props);
     this.toPlotlyData = this.toPlotlyData.bind(this);
+    this.toPredictedPlotlyData = this.toPredictedPlotlyData.bind(this);
     this.getTraceName = this.getTraceName.bind(this);
   }
   getTraceName(keyName){
@@ -16,29 +17,42 @@ class Plotly extends Component {
   }
   toPlotlyData(){
     const timeSeries = this.props.timeSeriesList[this.props.timeSeriesName];
+    console.log("Currently checking TimeSeries", timeSeries);
     const plotlyData = this.props.selectedGraphTypes.map(type => {
-      let x = [];
-      let y = [];
-      Object.keys(timeSeries[type])
-            .forEach(key =>{
-              x.push(key);
-              y.push(timeSeries[type][key]);
-            });
-      return {
-        'x': x,
-        'y': y,
+      let scatter = {
+        'x': timeSeries[type]['data']['x'],
+        'y': timeSeries[type]['data']['y'],
         'type': 'scatter',
         'mode': 'markers',
         'name': this.getTraceName(type)
       };
+      return scatter;
     });
     return plotlyData;
   }
+  toPredictedPlotlyData(){
+    const timeSeries = this.props.timeSeriesList[this.props.timeSeriesName];
+    const predictedPlotlyData = this.props.selectedGraphTypes.map(type => {
+      let x = timeSeries[type]['data']['x'].sort();
+      console.log(x);
+      return {
+        'x': x,
+        'y': timeSeries[type]['predicted']['y'],
+        'type': 'scatter',
+        'mode': 'lines',
+        'name': this.getTraceName(type)+' Trendline'
+      };
+    });
+    return predictedPlotlyData;
+  }
   render(){
     const plotlyData = this.toPlotlyData();
+    // const plotlyData = [];
+    const predictedPlotlyData = this.toPredictedPlotlyData();
+    // const predictedPlotlyData = [];
     console.log("Rendering Plotly...");
     return(
-      <Plot data= { plotlyData } />
+      <Plot data= { [ ...plotlyData, ...predictedPlotlyData ] } />
     );
   }
 }

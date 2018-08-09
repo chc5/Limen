@@ -5,7 +5,7 @@ from sklearn.preprocessing import PolynomialFeatures
 import statsmodels.formula.api as sm
 
 """
-    We are replacing date with integers for testing purposes.
+    We are replacing date with integers/indexes for testing purposes.
 
 """
 class Regressor():
@@ -41,8 +41,7 @@ class Regressor():
         # interval = x_newest - x_oldest
         # x_future = x_newest + interval // 7
         # predicted_x_set = np.arange(x_oldest, x_future, dtype='datetime64[W]')
-        predicted_x_set = [i for i in range(len(self.x_set))]
         predicted_y_set = []
-        for i in range(len(predicted_x_set)):
-            predicted_y_set.append(self.regressor.predict(predicted_x_set[i])[0])
+        for i in range(len(self.x_set)):
+            predicted_y_set.append(self.regressor.predict(i)[0])
         return predicted_y_set
