@@ -8,6 +8,7 @@ class Plotly extends Component {
     this.toPlotlyData = this.toPlotlyData.bind(this);
     this.toPredictedPlotlyData = this.toPredictedPlotlyData.bind(this);
     this.getTraceName = this.getTraceName.bind(this);
+    this.renderSummary = this.renderSummary.bind(this);
   }
   getTraceName(keyName){
     const result = Object.keys(GRAPH_TYPES).filter(key => {
@@ -45,14 +46,24 @@ class Plotly extends Component {
     });
     return predictedPlotlyData;
   }
+  renderSummary(){
+    const timeSeries = this.props.timeSeriesList[this.props.timeSeriesName];
+    const summary = this.props.selectedGraphTypes.map(type => {
+      return(
+        <div>{this.getTraceName(type)} Risk Score: {timeSeries[type]['risk_score']}</div>
+      );
+    });
+    return summary;
+  }
   render(){
     const plotlyData = this.toPlotlyData();
-    // const plotlyData = [];
     const predictedPlotlyData = this.toPredictedPlotlyData();
-    // const predictedPlotlyData = [];
-    console.log("Rendering Plotly...");
+    const summaryData = this.renderSummary();
     return(
-      <Plot data= { [ ...plotlyData, ...predictedPlotlyData ] } />
+      <div>
+        <Plot data= { [ ...plotlyData, ...predictedPlotlyData ] } />
+        <div>{summaryData}</div>
+      </div>
     );
   }
 }

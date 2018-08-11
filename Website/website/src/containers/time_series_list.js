@@ -28,11 +28,6 @@ class TimeSeriesList extends Component{
     );
   }
 
-  // shouldComponentUpdate(nextProps) {
-  //   console.log("Should Component Update thingy", nextProps);
-  //   return (this.props.timeSeriesList !== nextProps.timeSeriesList);
-  // }
-
   renderTimeSeries(timeSeriesName){
     let metaDataDisplay = this.renderMetaData(this.props.timeSeriesList[timeSeriesName][META_DATA]);
     let graphDisplay = this.renderGraph(timeSeriesName);

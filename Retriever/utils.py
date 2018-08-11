@@ -38,7 +38,7 @@ class AlphaVantageParser():
             regressor.fit_time_series(self.data[group]['data']['x'], self.data[group]['data']['y'])
             y_set = regressor.predict_time_series()
             self.data[group]['predicted'] = {'y': y_set}
-
+            self.data[group]['risk_score'] = regressor.get_risk_score()
     def get_data(self):
         return self.data
 

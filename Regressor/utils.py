@@ -12,7 +12,7 @@ class Regressor():
     DATE_FORMAT = '%Y-%m-%d'
 
     def __init__(self):
-        self.regressor = LinearRegression()
+        self.model = LinearRegression()
         self.x_set = None
         self.y_set = None
 
@@ -20,7 +20,14 @@ class Regressor():
         encoder = [i for i in range(len(x))]
         self.x_set = np.array(encoder).reshape(1, -1).T
         self.y_set = np.array(y)
-        self.regressor.fit(self.x_set, self.y_set)
+        self.poly_reg = PolynomialFeatures(degree = 3)
+        x_poly = self.poly_reg.fit_transform(self.x_set)
+        self.poly_reg.fit(x_poly, self.y_set)
+        self.model.fit(x_poly, self.y_set)
+        self.score = self.model.score(x_poly, self.y_set)
+
+    def get_risk_score(self):
+        return self.score
 
     def fit_poly(self, x_set, y_set):
         pass
@@ -43,5 +50,5 @@ class Regressor():
         # predicted_x_set = np.arange(x_oldest, x_future, dtype='datetime64[W]')
         predicted_y_set = []
         for i in range(len(self.x_set)):
-            predicted_y_set.append(self.regressor.predict(i)[0])
+            predicted_y_set.append(self.model.predict(self.poly_reg.fit_transform(i))[0])
         return predicted_y_set
