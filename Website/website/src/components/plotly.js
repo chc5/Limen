@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import Plot from 'react-plotly.js';
 import { connect } from 'react-redux';
-import { GRAPH_TYPES } from '../containers/selection_bar';
+import { GRAPH_TYPES } from '../containers/graph_type_selection_bar';
+
 class Plotly extends Component {
   constructor(props){
     super(props);
@@ -18,7 +19,6 @@ class Plotly extends Component {
   }
   toPlotlyData(){
     const timeSeries = this.props.timeSeriesList[this.props.timeSeriesName];
-    console.log("Currently checking TimeSeries", timeSeries);
     const plotlyData = this.props.selectedGraphTypes.map(type => {
       let scatter = {
         'x': timeSeries[type]['data']['x'],
@@ -35,7 +35,6 @@ class Plotly extends Component {
     const timeSeries = this.props.timeSeriesList[this.props.timeSeriesName];
     const predictedPlotlyData = this.props.selectedGraphTypes.map(type => {
       let x = timeSeries[type]['data']['x'].sort();
-      console.log(x);
       return {
         'x': x,
         'y': timeSeries[type]['predicted']['y'],
@@ -50,7 +49,14 @@ class Plotly extends Component {
     const timeSeries = this.props.timeSeriesList[this.props.timeSeriesName];
     const summary = this.props.selectedGraphTypes.map(type => {
       return(
-        <div>{this.getTraceName(type)} Risk Score: {timeSeries[type]['risk_score']}</div>
+        <div>
+          <div>{this.getTraceName(type)} Risk Score: {timeSeries[type]['risk_score']}</div>
+          <div>
+            {this.getTraceName(type)} Trendline: {timeSeries[type]['coefficients'].map(coef =>
+                <span> {coef} </span>
+              )}
+          </div>
+        </div>
       );
     });
     return summary;
@@ -61,7 +67,17 @@ class Plotly extends Component {
     const summaryData = this.renderSummary();
     return(
       <div>
-        <Plot data= { [ ...plotlyData, ...predictedPlotlyData ] } />
+        <Plot data= { [ ...plotlyData, ...predictedPlotlyData ] }
+              layout={{
+                     autosize: true,
+                     legend: {
+                        x: -.1,
+                        y: 1.2
+                      }
+                 }}
+              useResizeHandler={true}
+              style={ { width: "100%", height: "100%" } }
+          />
         <div>{summaryData}</div>
       </div>
     );

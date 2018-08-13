@@ -15,8 +15,6 @@ class TimeSeriesList extends Component{
   }
 
   renderGraph(timeSeriesName){
-    console.log("renderGraph moment",timeSeriesName);
-
     return (
       <Plotly timeSeriesName={timeSeriesName} />
     );
@@ -47,15 +45,12 @@ class TimeSeriesList extends Component{
     );
   }
   render(){
-    console.log("Rendering Time Series List")
     return (
-      <div>
-        <div>
-          {this.props.timeSeriesList
-            ? (this.renderTimeSeriesList(this.props.timeSeriesList))
-            : ("Loading...")
-          }
-        </div>
+      <div className='time-series-graph'>
+        {this.props.timeSeriesList
+          ? (this.renderTimeSeriesList(this.props.timeSeriesList))
+          : ("Loading...")
+        }
       </div>
     );
   }

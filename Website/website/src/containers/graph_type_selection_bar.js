@@ -12,9 +12,9 @@ export const ADJUSTED_CLOSE = { name:"Adjusted Closing Price", key:"5. adjusted 
 export const VOLUME = { name:"Volume", key:"6. volume" };
 export const DIVIDEND = { name:"Dividend", key:"7. dividend amount" };
 
-export const GRAPH_TYPES = { OPEN, HIGH, LOW, CLOSE, ADJUSTED_CLOSE, VOLUME, DIVIDEND };
+export const GRAPH_TYPES = { ADJUSTED_CLOSE, OPEN, HIGH, LOW, CLOSE, VOLUME, DIVIDEND };
 
-class SelectionBar extends Component {
+class GraphTypeSelectionBar extends Component {
   constructor(props){
     super(props);
     this.renderCol = this.renderCol.bind(this);
@@ -24,22 +24,29 @@ class SelectionBar extends Component {
     this.props.updateGraph(type);
   }
   renderCol(type){
+    let colClassName = "selection_bar_items col "
+          + (this.props.selectedGraphTypes.includes(GRAPH_TYPES[type].key)? "graph_type_item_checked" : "");
+
     return (
-      <button className="btn btn-secondary active"
+      <div className={colClassName}
            key={GRAPH_TYPES[type].key}
            onClick={this.onClick.bind(this, GRAPH_TYPES[type].key)}>
         {GRAPH_TYPES[type].name}
-      </button>
+      </div>
     );
   }
 
   render(){
     return(
-      <div className="btn-group-vertical" data-toggle="btn">
+      <div className="selection_bar row">
         { Object.keys(GRAPH_TYPES).map(this.renderCol) }
       </div>
     );
   }
+}
+
+function mapStateToProps({ selectedGraphTypes }){
+  return { selectedGraphTypes };
 }
 
 function mapDispatchToProps(dispatch){
@@ -47,4 +54,4 @@ function mapDispatchToProps(dispatch){
 }
 
 
-export default connect(null, mapDispatchToProps)(SelectionBar);
+export default connect(mapStateToProps, mapDispatchToProps)(GraphTypeSelectionBar);

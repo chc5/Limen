@@ -10,9 +10,8 @@ export default (props) => {
   let metaData = props.metaData;
   return(
     <div key={metaData[INFORMATION]}>
-      <h1 key={SYMBOL}> {metaData[SYMBOL]} </h1>
-      <h2 key={INFORMATION}> {metaData[INFORMATION]} </h2>
-      <h3 key={LAST_UPDATE}> {metaData[LAST_UPDATE]} {metaData[TIME_ZONE]}</h3>
+      <h6 key={SYMBOL}> {metaData[SYMBOL]} {metaData[INFORMATION]}</h6>
+      <h6 key={LAST_UPDATE}> {metaData[LAST_UPDATE]} {metaData[TIME_ZONE]}</h6>
     </div>
   );
 }

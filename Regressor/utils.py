@@ -24,10 +24,14 @@ class Regressor():
         x_poly = self.poly_reg.fit_transform(self.x_set)
         self.poly_reg.fit(x_poly, self.y_set)
         self.model.fit(x_poly, self.y_set)
+        self.coefficients = list(self.model.coef_)
         self.score = self.model.score(x_poly, self.y_set)
 
     def get_risk_score(self):
         return self.score
+
+    def get_coefficients(self):
+        return self.coefficients
 
     def fit_poly(self, x_set, y_set):
         pass

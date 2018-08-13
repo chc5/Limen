@@ -18,14 +18,13 @@ class SearchBar extends Component {
 
   onFormSubmit(event){
     event.preventDefault();
-
     this.props.fetchTimeSeries(this.state.term);
     this.setState({ term: '' });
   }
 
   render(){
     return (
-      <form onSubmit={this.onFormSubmit} className="input-group">
+      <form onSubmit={this.onFormSubmit} className="input-group search-bar">
         <input placeholder="Get stock market data from companies by their symbol."
           className="form-control"
           value={this.state.term}
