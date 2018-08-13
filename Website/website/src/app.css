@@ -16,25 +16,33 @@ body{
 
 }
 
+.time-series-bar{
+  margin-top: 1%;
+  margin-bottom: 1%;
+}
+
+.time-series-btn{
+  border-style: groove;
+  border-color: grey;
+}
+
 .selection_bar{
-  margin: 0.5%;
+  margin-top: 0.5%;
+  margin-bottom: 0.5%;
 }
 
 .selection_bar:hover{
   cursor: pointer;
 }
 
-.time-series-btn.active{
-  background-color: blue;
-}
 .selection_bar_items{
-  padding: 1%;
   border-style: groove;
-  border-radius: 5px;
-  margin: 0.1%;
-  color: white;
+  border-color: grey;
 }
 
+
+
 .graph_type_item_checked{
-  background-color: cyan;
+  background-color: grey;
+  color: black;
 }

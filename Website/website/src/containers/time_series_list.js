@@ -10,7 +10,6 @@ class TimeSeriesList extends Component{
     super(props);
     this.renderMetaData = this.renderMetaData.bind(this);
     this.renderTimeSeries = this.renderTimeSeries.bind(this);
-    this.renderTimeSeriesList = this.renderTimeSeriesList.bind(this);
     this.renderGraph = this.renderGraph.bind(this);
   }
 
@@ -37,27 +36,20 @@ class TimeSeriesList extends Component{
     );
   }
 
-  renderTimeSeriesList(timeSeriesList){
-    const list = Object.keys(timeSeriesList)
-                       .map(this.renderTimeSeries);
-    return (
-      <span>{list}</span>
-    );
-  }
   render(){
     return (
       <div className='time-series-graph'>
         {this.props.timeSeriesList
-          ? (this.renderTimeSeriesList(this.props.timeSeriesList))
-          : ("Loading...")
+          ? (this.renderTimeSeries(this.props.selectedTimeSeries))
+          : ("")
         }
       </div>
     );
   }
 }
 
-function mapStateToProps({ timeSeriesList }){
-  return { timeSeriesList };
+function mapStateToProps({ selectedTimeSeries, timeSeriesList }){
+  return { selectedTimeSeries, timeSeriesList };
 }
 
 export default connect (mapStateToProps) (TimeSeriesList);

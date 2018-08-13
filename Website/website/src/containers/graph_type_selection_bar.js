@@ -25,14 +25,16 @@ class GraphTypeSelectionBar extends Component {
   }
   renderCol(type){
     let colClassName = "selection_bar_items col "
-          + (this.props.selectedGraphTypes.includes(GRAPH_TYPES[type].key)? "graph_type_item_checked" : "");
+          + (this.props.selectedGraphTypes.includes(GRAPH_TYPES[type].key)
+              ? "graph_type_item_checked"
+              : "");
 
     return (
-      <div className={colClassName}
+      <button className={"btn btn-light "+colClassName}
            key={GRAPH_TYPES[type].key}
            onClick={this.onClick.bind(this, GRAPH_TYPES[type].key)}>
         {GRAPH_TYPES[type].name}
-      </div>
+      </button>
     );
   }
 
