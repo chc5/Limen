@@ -17,7 +17,6 @@ export function fetchTimeSeries(symbol){
 }
 
 export function updateGraph(graphType){
-  console.log("Sending to reducer", graphType);
   return {
     type: UPDATE_GRAPH,
     payload: {data: graphType}
@@ -25,7 +24,6 @@ export function updateGraph(graphType){
 }
 
 export function selectTimeSeries(timeSeriesType){
-  console.log("Sending to time series", timeSeriesType);
   return {
     type: SELECT_TIME_SERIES,
     payload: {data: timeSeriesType}

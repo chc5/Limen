@@ -1,22 +1,25 @@
 import React, { Component } from 'react';
 import Plot from 'react-plotly.js';
 import { connect } from 'react-redux';
+
 import { GRAPH_TYPES } from '../containers/graph_type_selection_bar';
 
 class Plotly extends Component {
+
   constructor(props){
     super(props);
     this.toPlotlyData = this.toPlotlyData.bind(this);
     this.toPredictedPlotlyData = this.toPredictedPlotlyData.bind(this);
     this.getTraceName = this.getTraceName.bind(this);
-    this.renderSummary = this.renderSummary.bind(this);
   }
+
   getTraceName(keyName){
     const result = Object.keys(GRAPH_TYPES).filter(key => {
       return GRAPH_TYPES[key].key === keyName;
     });
     return result.length > 0 ? GRAPH_TYPES[result[0]].name : "undefined";
   }
+
   toPlotlyData(){
     const timeSeries = this.props.timeSeriesList[this.props.timeSeriesName];
     const plotlyData = this.props.selectedGraphTypes.map(type => {
@@ -31,6 +34,7 @@ class Plotly extends Component {
     });
     return plotlyData;
   }
+
   toPredictedPlotlyData(){
     const timeSeries = this.props.timeSeriesList[this.props.timeSeriesName];
     const predictedPlotlyData = this.props.selectedGraphTypes.map(type => {
@@ -45,26 +49,10 @@ class Plotly extends Component {
     });
     return predictedPlotlyData;
   }
-  renderSummary(){
-    const timeSeries = this.props.timeSeriesList[this.props.timeSeriesName];
-    const summary = this.props.selectedGraphTypes.map(type => {
-      return(
-        <div>
-          <div>{this.getTraceName(type)} Risk Score: {timeSeries[type]['risk_score']}</div>
-          <div>
-            {this.getTraceName(type)} Trendline: {timeSeries[type]['coefficients'].map(coef =>
-                <span> {coef} </span>
-              )}
-          </div>
-        </div>
-      );
-    });
-    return summary;
-  }
+
   render(){
     const plotlyData = this.toPlotlyData();
     const predictedPlotlyData = this.toPredictedPlotlyData();
-    const summaryData = this.renderSummary();
     return(
       <div>
         <Plot data= { [ ...plotlyData, ...predictedPlotlyData ] }
@@ -78,10 +66,10 @@ class Plotly extends Component {
               useResizeHandler={true}
               style={ { width: "100%", height: "100%" } }
           />
-        <div>{summaryData}</div>
       </div>
     );
   }
+  
 }
 
 function mapStateToProps({ timeSeriesList, selectedGraphTypes }, { timeSeriesName }){

@@ -15,14 +15,17 @@ export const DIVIDEND = { name:"Dividend", key:"7. dividend amount" };
 export const GRAPH_TYPES = { ADJUSTED_CLOSE, OPEN, HIGH, LOW, CLOSE, VOLUME, DIVIDEND };
 
 class GraphTypeSelectionBar extends Component {
+  
   constructor(props){
     super(props);
     this.renderCol = this.renderCol.bind(this);
     this.props.updateGraph(ADJUSTED_CLOSE.key);
   }
+
   onClick(type, event){
     this.props.updateGraph(type);
   }
+
   renderCol(type){
     let colClassName = "selection_bar_items col "
           + (this.props.selectedGraphTypes.includes(GRAPH_TYPES[type].key)
@@ -45,6 +48,7 @@ class GraphTypeSelectionBar extends Component {
       </div>
     );
   }
+
 }
 
 function mapStateToProps({ selectedGraphTypes }){

@@ -2,36 +2,23 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Plotly from '../components/plotly';
 import MetaData from './meta_data';
+import Summary from './summary';
 
 export const META_DATA = "Meta Data";
 
 class TimeSeriesList extends Component{
+
   constructor(props){
     super(props);
-    this.renderMetaData = this.renderMetaData.bind(this);
     this.renderTimeSeries = this.renderTimeSeries.bind(this);
-    this.renderGraph = this.renderGraph.bind(this);
-  }
-
-  renderGraph(timeSeriesName){
-    return (
-      <Plotly timeSeriesName={timeSeriesName} />
-    );
-  }
-
-  renderMetaData(metaData){
-    return(
-      <MetaData metaData={metaData} />
-    );
   }
 
   renderTimeSeries(timeSeriesName){
-    let metaDataDisplay = this.renderMetaData(this.props.timeSeriesList[timeSeriesName][META_DATA]);
-    let graphDisplay = this.renderGraph(timeSeriesName);
     return (
       <div key={timeSeriesName}>
-        {metaDataDisplay}
-        {graphDisplay}
+        <MetaData timeSeriesName={timeSeriesName} />
+        <Plotly timeSeriesName={timeSeriesName} />
+        <Summary timeSeriesName={timeSeriesName} />
       </div>
     );
   }
@@ -46,6 +33,7 @@ class TimeSeriesList extends Component{
       </div>
     );
   }
+  
 }
 
 function mapStateToProps({ selectedTimeSeries, timeSeriesList }){
