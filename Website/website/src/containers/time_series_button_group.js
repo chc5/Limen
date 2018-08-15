@@ -41,15 +41,18 @@ class TimeSeriesButtonGroup extends Component{
   render(){
     return(
       <div className="row time-series-bar" role="toolbar">
-        {Object.keys(TIME_SERIES).map(name => this.renderBtn(name))}
+        { this.props.timeSeriesList
+          ? Object.keys(TIME_SERIES).map(name => this.renderBtn(name))
+          : ""
+        }
       </div>
     );
   }
-  
+
 }
 
-function mapStateToProps({ selectedTimeSeries }){
-  return { selectedTimeSeries };
+function mapStateToProps({ selectedTimeSeries, timeSeriesList }){
+  return { selectedTimeSeries, timeSeriesList };
 }
 
 function mapDispatchToProps(dispatch){

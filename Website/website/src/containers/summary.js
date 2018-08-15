@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 
 import { GRAPH_TYPES } from '../containers/graph_type_selection_bar';
 export const SUMMARY = "summary";
-
+const RISK_SCORE = "risk_score";
+const COEFFICIENTS = "coefficients";
 class Summary extends Component{
 
   constructor(props){
@@ -24,11 +25,11 @@ class Summary extends Component{
       <div>
         { this.props.selectedGraphTypes.map(type => {
             return(
-              <div className="col">
-                <div>{this.getName(type)} Risk Score: {timeSeries[type][SUMMARY]['risk_score']}</div>
-                <div>
-                  {this.getName(type)} Trendline: {timeSeries[type][SUMMARY]['coefficients'].map(coef =>
-                      <span> {coef} </span>
+              <div key={type}>
+                <div key={RISK_SCORE}>{this.getName(type)} Risk Score: {timeSeries[type][SUMMARY][RISK_SCORE]}</div>
+                <div key={COEFFICIENTS}>
+                  {this.getName(type)} Trendline: {timeSeries[type][SUMMARY][COEFFICIENTS].map(coef =>
+                      <span key={coef}> {coef} </span>
                     )}
                 </div>
               </div>

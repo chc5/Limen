@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import { bindActionCreators } from 'redux';
-import { fetchTimeSeries } from '../actions/index';
+import { fetchTimeSeries, setDisplay, LOADING } from '../actions/index';
 
 class SearchBar extends Component {
   constructor(props){
@@ -18,6 +18,7 @@ class SearchBar extends Component {
 
   onFormSubmit(event){
     event.preventDefault();
+    this.props.setDisplay(LOADING);
     this.props.fetchTimeSeries(this.state.term);
     this.setState({ term: '' });
   }
@@ -39,7 +40,7 @@ class SearchBar extends Component {
 }
 
 function mapDispatchToProps(dispatch){
-  return bindActionCreators({ fetchTimeSeries }, dispatch);
+  return bindActionCreators({ fetchTimeSeries, setDisplay }, dispatch);
 }
 
 export default connect(null, mapDispatchToProps)(SearchBar);

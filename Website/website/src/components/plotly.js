@@ -69,7 +69,7 @@ class Plotly extends Component {
       </div>
     );
   }
-  
+
 }
 
 function mapStateToProps({ timeSeriesList, selectedGraphTypes }, { timeSeriesName }){

@@ -1,11 +1,18 @@
 import axios from 'axios';
-// const API_URL = 'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=';
-// const API_KEY = 'L2Q64VHCLH2NMMN3'
 
 const ROOT_URL = 'http://localhost:8000';
+
 export const FETCH_TIME_SERIES = 'FETCH_TIME_SERIES';
 export const UPDATE_GRAPH = 'UPDATE_GRAPH';
 export const SELECT_TIME_SERIES = 'SELECT_TIME_SERIES';
+
+export const SET_DISPLAY = 'SET_DISPLAY';
+
+export const MAIN = 'Main';
+export const LOADING = 'Loading';
+export const RESULT = 'Result';
+
+export const DISPLAYS = [MAIN, LOADING, RESULT];
 
 export function fetchTimeSeries(symbol){
   const url = `${ROOT_URL}/get?symbol=${symbol}`;
@@ -27,5 +34,12 @@ export function selectTimeSeries(timeSeriesType){
   return {
     type: SELECT_TIME_SERIES,
     payload: {data: timeSeriesType}
+  }
+}
+
+export function setDisplay(display){
+  return {
+    type: SET_DISPLAY,
+    payload: {data: display}
   }
 }
