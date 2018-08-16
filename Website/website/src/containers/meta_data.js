@@ -9,7 +9,7 @@ const LAST_UPDATE = "3. Last Refreshed";
 const TIME_ZONE = "4. Time Zone";
 
 class MetaData extends Component{
-  
+
   constructor(props){
     super(props);
     this.getMetaData = this.getMetaData.bind(this);
@@ -22,9 +22,13 @@ class MetaData extends Component{
   render(){
     const metaData = this.getMetaData();
     return(
-      <div key={metaData[INFORMATION]}>
-        <h6 key={SYMBOL}> {metaData[SYMBOL].toUpperCase()} {metaData[INFORMATION]}</h6>
-        <h6 key={LAST_UPDATE}> {metaData[LAST_UPDATE]} {metaData[TIME_ZONE]}</h6>
+      <div className="card text-white bg-dark mb-3" key={META_DATA}>
+        <div className="card-body">
+          <h5 className="card-title">{metaData[SYMBOL].toUpperCase()}</h5>
+          <p className="card-text">
+            Last Update: {metaData[LAST_UPDATE]}
+          </p>
+        </div>
       </div>
     );
   }

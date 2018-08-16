@@ -4,9 +4,9 @@ import { bindActionCreators } from 'redux';
 
 import { selectTimeSeries } from '../actions/index';
 
-const DAILY = { name:"Daily Time Series", key:"TIME_SERIES_DAILY_ADJUSTED" };;
-const WEEKLY = { name:"Weekly Time Series", key:"TIME_SERIES_WEEKLY_ADJUSTED" };
-const MONTHLY = { name:"Monthly Time Series", key:"TIME_SERIES_MONTHLY_ADJUSTED" };
+const DAILY = { name:"Daily", key:"TIME_SERIES_DAILY_ADJUSTED" };;
+const WEEKLY = { name:"Weekly", key:"TIME_SERIES_WEEKLY_ADJUSTED" };
+const MONTHLY = { name:"Monthly", key:"TIME_SERIES_MONTHLY_ADJUSTED" };
 
 export const TIME_SERIES = {DAILY, WEEKLY, MONTHLY};
 

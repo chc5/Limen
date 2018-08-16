@@ -20,12 +20,15 @@ class Regressor():
         encoder = [i for i in range(len(x))]
         self.x_set = np.array(encoder).reshape(1, -1).T
         self.y_set = np.array(y)
+
         self.poly_reg = PolynomialFeatures(degree = 3)
         x_poly = self.poly_reg.fit_transform(self.x_set)
         self.poly_reg.fit(x_poly, self.y_set)
         self.model.fit(x_poly, self.y_set)
-        self.coefficients = list(self.model.coef_)
-        self.score = self.model.score(x_poly, self.y_set)
+
+        # Note: the coefficients are in orders of 1, x, x^2, x^3
+        self.coefficients = ['{:0.3e}'.format(coef) for coef in self.model.coef_]
+        self.score = '{:0.2f}'.format(self.model.score(x_poly, self.y_set) * 100)
 
     def get_risk_score(self):
         return self.score

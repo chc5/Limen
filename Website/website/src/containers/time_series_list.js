@@ -19,10 +19,10 @@ class TimeSeriesList extends Component{
     return (
       <div key={timeSeriesName} className="row">
         <div className="col-lg-8 col-md-12 col-sm-12 col-xs-12">
-          <MetaData timeSeriesName={timeSeriesName} />
           <Plotly timeSeriesName={timeSeriesName} />
         </div>
         <div className="col-lg-4 col-md-12 col-sm-12 col-xs-12">
+          <MetaData timeSeriesName={timeSeriesName} />
           <Summary timeSeriesName={timeSeriesName} />
         </div>
       </div>

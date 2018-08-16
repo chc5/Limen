@@ -7,6 +7,7 @@
 
 ## Timeline (Work in Progress)
  - Finished creating the basis of a wrapper for AlphaVantage API.
+ - Created a Batch Handler to process API requests to 5 requests per minute (Free tier)
  - Finished building my Website on React-Redux.
  - Plotted my stock prices and trendline from using polynomial regression on Plotly React.
  - Built a Time Series Predictor from sklearn using polynomial regression of degree 3 (4 or above is overfitting and takes too much time to process.)

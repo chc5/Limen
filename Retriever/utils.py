@@ -2,6 +2,8 @@ import urllib.request
 import urllib.parse
 from django.http import HttpRequest
 from Regressor.utils import Regressor
+from Limen.BatchHandler import BatchHandler
+
 class AlphaVantageParser():
     meta_tag = 'Meta Data'
     predict_tag = 'PREDICT'
@@ -46,7 +48,9 @@ class AlphaVantageParser():
 
 class DataRetriever():
 
-    def get_data_from(self, url):
+    @staticmethod
+    def get_data_from(url):
+        BatchHandler.request_access()
         f = urllib.request.urlopen(url)
         return f.read().decode('utf-8')
 

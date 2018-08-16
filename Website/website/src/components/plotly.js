@@ -54,7 +54,7 @@ class Plotly extends Component {
     const plotlyData = this.toPlotlyData();
     const predictedPlotlyData = this.toPredictedPlotlyData();
     return(
-      <div>
+      <div className="Plotly">
         <Plot data= { [ ...plotlyData, ...predictedPlotlyData ] }
               layout={{
                      autosize: true,
