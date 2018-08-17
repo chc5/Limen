@@ -7,7 +7,8 @@ from Retriever.models import TimeSeries
 from Retriever.utils import URLBuilder
 from Retriever.utils import DataRetriever
 from Retriever.utils import AlphaVantageParser
-from Limen.settings import ALPHA_VANTAGE_API_KEY
+from Limen.AlphaVantageAPI import AlphaVantageAPIKeyGetter
+
 import json
 import re
 
@@ -22,7 +23,7 @@ def index(request):
 def get(request):
     if not 'symbol' in request.GET:
         return HttpResponseNotFound('Symbol does not exist.')
-    url_builder = URLBuilder(ALPHA_VANTAGE_API_KEY)
+    url_builder = URLBuilder(AlphaVantageAPIKeyGetter().get_key())
     url_builder.append_parameters(request.GET)
     data = {}
     for symbol in TimeSeries.objects.all():
@@ -35,6 +36,20 @@ def get(request):
         data[name] = parser.get_data()
     return JsonResponse({ 'data': data })
 
+def get_weekly(request):
+    if not 'symbol' in request.GET:
+        return HttpRequestNotFound('Symbol does not exist.')
+    url_builder = URLBuilder(AlphaVantageAPIKeyGetter().get_key())
+    url_builder.append_parameters(request.GET)
+    data = {}
+    name = 'TIME_SERIES_WEEKLY_ADJUSTED'
+    url_builder.append_parameter('function', name)
+    url = str(url_builder)
+    print(url)
+    result = json.loads(DataRetriever().get_data_from(url))
+    parser = AlphaVantageParser(result)
+    data[name] = parser.get_data()
+    return JsonResponse({ 'data': data })
 
 def lookup_function(request):
     if not 'function' in request.GET:
@@ -81,7 +96,6 @@ def verify(request):
     return invalid_parameters
 
 def import_m(request):
-    # return HttpResponse('Hello Worlllld')
     if not 'module' in request.GET:
         return HttpResponse('Module key not found')
     if request.GET['module'] == 'retrieve':
