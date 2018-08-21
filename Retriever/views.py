@@ -8,7 +8,7 @@ from Retriever.utils import URLBuilder
 from Retriever.utils import DataRetriever
 from Retriever.utils import AlphaVantageParser
 from Limen.AlphaVantageAPI import AlphaVantageAPIKeyGetter
-
+from Limen.settings import ALPHA_VANTAGE_API_KEY
 import json
 import re
 
@@ -39,7 +39,7 @@ def get(request):
 def get_weekly(request):
     if not 'symbol' in request.GET:
         return HttpRequestNotFound('Symbol does not exist.')
-    url_builder = URLBuilder(AlphaVantageAPIKeyGetter().get_key())
+    url_builder = URLBuilder(ALPHA_VANTAGE_API_KEY)
     url_builder.append_parameters(request.GET)
     data = {}
     name = 'TIME_SERIES_WEEKLY_ADJUSTED'

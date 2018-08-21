@@ -1,0 +1,19 @@
+{
+  "name": "limen",
+  "version": "1.0.0",
+  "description": "- To learn about the stock market.\r  - To develop an analysis tool that will make stocks be easier to understand.\r  - To build a predictor based on news and historical prices.\r  - To create a list of safe stocks that are good for investments.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chc5/Limen.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chc5/Limen/issues"
+  },
+  "homepage": "https://github.com/chc5/Limen#readme"
+}

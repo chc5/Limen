@@ -1,5 +1,6 @@
 cycler==0.10.0
 Django==2.0.7
+django-webpack-loader==0.6.0
 kiwisolver==1.0.1
 matplotlib==2.2.2
 numpy==1.15.0

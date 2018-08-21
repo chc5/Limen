@@ -6,7 +6,7 @@
     "ajv": "^6.5.2",
     "axios": "^0.18.0",
     "lodash": "^4.17.10",
-    "plotly.js": "^1.39.4",
+    "plotly.js": "^1.40.0",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "react-plotly.js": "^2.2.0",
