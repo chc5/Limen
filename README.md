@@ -23,4 +23,4 @@
   Retriever - Retrieves stock prices from AlphaVantage.
 
 ## Frontend - Website
-  Website - Stores all of the frontend of the React-Redux website.
+  Website - Runs on a React/Redux Website.

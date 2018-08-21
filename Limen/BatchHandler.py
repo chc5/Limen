@@ -12,13 +12,10 @@ class BatchHandler():
 
     @staticmethod
     def __wait():
-        print("Waiting ... ")
+        print("Sleeping until the next batch time in", BatchHandler.next_batch)
         time_now = datetime.datetime.now()
         if BatchHandler.next_batch > time_now:
             sleep_time = BatchHandler.next_batch - time_now
-            # print("Sleeping for another ", sleep_time.seconds, " seconds")
-            # print("Next Batch Time", BatchHandler.next_batch)
-            # print("Time Now:", time_now)
             time.sleep(sleep_time.seconds)
 
     @staticmethod
@@ -32,4 +29,4 @@ class BatchHandler():
         if BatchHandler.requests == BatchHandler.limit:
             BatchHandler.__restart()
         BatchHandler.requests += 1
-        print("Requests: ",BatchHandler.requests)
+        print("Request #", BatchHandler.requests)

@@ -1,8 +1,5 @@
 # Settings
-Limen/settings.py
-
-# AlphaVantage API key
-Limen/AlphaVantageAPI.py
+# Limen/settings.py
 
 # Build
-/build
+# /build
