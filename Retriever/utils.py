@@ -26,10 +26,10 @@ class AlphaVantageParser():
         for date in self.data.keys():
             for group in self.data[date].keys():
                 if group not in groups:
-                    groups[group] = {'data':{'x': [date], 'y': [float(self.data[date][group])]}}
+                    groups[group] = {'data':{'x': [date], 'y': ['{:0.2f}'.format(float(self.data[date][group]))]}}
                 else:
                     groups[group]['data']['x'].append(date)
-                    groups[group]['data']['y'].append(float(self.data[date][group]))
+                    groups[group]['data']['y'].append('{:0.2f}'.format(float(self.data[date][group])))
         for group in groups:
             groups[group]['data']['x'], groups[group]['data']['y'] = zip(*sorted(zip(groups[group]['data']['x'], groups[group]['data']['y'])))
         return groups
