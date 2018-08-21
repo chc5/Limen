@@ -53,6 +53,5 @@ class Regressor():
         # predicted_x_set = np.arange(x_oldest, x_future, dtype='datetime64[W]')
         predicted_y_set = []
         for i in range(len(self.x_set)):
-            y = self.model.predict(self.poly_reg.fit_transform(i))[0]
-            predicted_y_set.append('{:0.2f}'.format(y))
+            predicted_y_set.append(self.model.predict(self.poly_reg.fit_transform(i))[0])
         return predicted_y_set
