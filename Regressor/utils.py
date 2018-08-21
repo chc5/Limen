@@ -4,10 +4,6 @@ from sklearn.linear_model import LinearRegression
 from sklearn.preprocessing import PolynomialFeatures
 import statsmodels.formula.api as sm
 
-"""
-    We are replacing date with integers/indexes for testing purposes.
-
-"""
 class Regressor():
     DATE_FORMAT = '%Y-%m-%d'
 
