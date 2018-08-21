@@ -14,9 +14,16 @@ import os
 # API KEYS
 ALPHA_VANTAGE_API_KEY = 'L2Q64VHCLH2NMMN3'
 
+# Cross-Origin Resource Sharing
+CORS_ORIGIN_WHITELIST = (
+'limen.herokuapp.com',
+'localhost',
+'127.0.0.1'
+)
+
 # DEFAULT CHANGES
 # Change it into True if we have HTTPS connection.
-# CSRF_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -31,7 +38,7 @@ SECRET_KEY = 'm!ny8_8@jt55t(h9)0+=plj#^a0+yf#ctcx=k!3bh!k9=no(l#'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['limen.herokuapp.com']
+ALLOWED_HOSTS = ['localhost','127.0.0.1','limen.herokuapp.com']
 
 # Application definition
 
@@ -44,9 +51,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'corsheaders'
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
