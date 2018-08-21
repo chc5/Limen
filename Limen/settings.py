@@ -15,11 +15,12 @@ import os
 ALPHA_VANTAGE_API_KEY = 'L2Q64VHCLH2NMMN3'
 
 # Cross-Origin Resource Sharing
-CORS_ORIGIN_WHITELIST = (
-'limen.herokuapp.com',
-'localhost',
-'127.0.0.1'
-)
+# CORS_ORIGIN_WHITELIST = (
+# 'limen.herokuapp.com',
+# 'localhost',
+# '127.0.0.1'
+# )
+CORS_ORIGIN_ALLOW_ALL = True
 
 # DEFAULT CHANGES
 # Change it into True if we have HTTPS connection.
