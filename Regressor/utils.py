@@ -24,7 +24,7 @@ class Regressor():
         self.model.fit(x_poly, self.y_set)
 
         # Note: the coefficients are in orders of 1, x, x^2, x^3
-        self.coefficients = ['{:0.3e}'.format(coef) for coef in self.model.coef_]
+        self.coefficients = [coef for coef in self.model.coef_]
         self.score = '{:0.2f}'.format(self.model.score(x_poly, self.y_set) * 100)
 
     def get_risk_score(self):
@@ -35,13 +35,16 @@ class Regressor():
         if len(self.x_set) <= 1:
             return 0
         d, c, b, a = self.coefficients
-        discriminant = math.sqrt(4 * (b**2) - 12*a*c)
-        x1 = ((-2*b)+discriminant) / (6 * a)
+        discriminant = 4 * (b**2) - 12*a*c
+        if discriminant < 0 or a == 0:
+            x1 = self.x_set[0][0]
+        else:
+            x1 = ((-2*b) + math.sqrt(discriminant)) / (6 * a)
         y1 = self.model.predict(self.poly_reg.fit_transform(x1))[0]
-        x2 = self.x_set[-1]
+        x2 = self.x_set[-1][0]
         y2 = self.model.predict(self.poly_reg.fit_transform(x2))[0]
         slope = (y2 - y1) / (x2 - x1)
-        return '{:0.5f}'.format(slope) * 100
+        return '{:0.2f}'.format(slope)
 
     def get_coefficients(self):
         return self.coefficients

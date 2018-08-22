@@ -3,10 +3,10 @@ import { connect } from 'react-redux';
 
 export const META_DATA = "Meta Data";
 
-const INFORMATION = "1. Information";
+// const INFORMATION = "1. Information";
 const SYMBOL = "2. Symbol";
 const LAST_UPDATE = "3. Last Refreshed";
-const TIME_ZONE = "4. Time Zone";
+// const TIME_ZONE = "4. Time Zone";
 
 class MetaData extends Component{
 

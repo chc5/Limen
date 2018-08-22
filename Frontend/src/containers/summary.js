@@ -2,22 +2,30 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import { GRAPH_TYPES } from '../containers/graph_type_selection_bar';
+import { TIME_SERIES } from '../containers/time_series_button_group';
 export const SUMMARY = "summary";
 const RISK_SCORE = "risk_score";
-const COEFFICIENTS = "coefficients";
 const POTENTIAL_SCORE = "potential_score";
 class Summary extends Component{
 
   constructor(props){
     super(props);
-    this.getName = this.getName.bind(this);
+    this.getGraphName = this.getGraphName.bind(this);
+    this.getTimeSeriesName = this.getTimeSeriesName.bind(this);
   }
 
-  getName(keyName){
+  getGraphName(keyName){
     const result = Object.keys(GRAPH_TYPES).filter(key => {
       return GRAPH_TYPES[key].key === keyName;
     });
     return result.length > 0 ? GRAPH_TYPES[result[0]].name : "undefined";
+  }
+
+  getTimeSeriesName(keyName){
+    const result = Object.keys(TIME_SERIES).filter(key => {
+      return TIME_SERIES[key].key === keyName;
+    });
+    return result.length > 0 ? TIME_SERIES[result[0]].time : "undefined";
   }
 
   render(){
@@ -25,10 +33,9 @@ class Summary extends Component{
     return (
       <div>
         { this.props.selectedGraphTypes.map(type => {
-            console.log(timeSeries[type][SUMMARY][COEFFICIENTS]);
             return(
               <div className="card text-white bg-dark mb-3" key={type}>
-                <div className="card-header">{this.getName(type)} Summary</div>
+                <div className="card-header">{this.getGraphName(type)} Summary</div>
                 <div className="card-body">
                   <h5 className="card-title">Steady Score: {timeSeries[type][SUMMARY][RISK_SCORE]}</h5>
                   <p className="card-text">
@@ -36,7 +43,7 @@ class Summary extends Component{
                     The higher the score, the more safe the score.
                   </p>
                   <h5 className="card-title">
-                    Potential Growth: {timeSeries[type][SUMMARY][POTENTIAL_SCORE]}
+                    Potential Growth: {timeSeries[type][SUMMARY][POTENTIAL_SCORE]} per {this.getTimeSeriesName(this.props.timeSeriesName)}
                   </h5>
                   <p className="card-text">
                     This score calculates how much potential this stock has.

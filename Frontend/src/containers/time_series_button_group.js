@@ -4,9 +4,9 @@ import { bindActionCreators } from 'redux';
 
 import { selectTimeSeries } from '../actions/index';
 
-const DAILY = { name:"Daily", key:"TIME_SERIES_DAILY_ADJUSTED" };;
-const WEEKLY = { name:"Weekly", key:"TIME_SERIES_WEEKLY_ADJUSTED" };
-const MONTHLY = { name:"Monthly", key:"TIME_SERIES_MONTHLY_ADJUSTED" };
+const DAILY = { name:"Daily", key:"TIME_SERIES_DAILY_ADJUSTED", time:"day" };;
+const WEEKLY = { name:"Weekly", key:"TIME_SERIES_WEEKLY_ADJUSTED", time:"week" };
+const MONTHLY = { name:"Monthly", key:"TIME_SERIES_MONTHLY_ADJUSTED", time:"month" };
 
 export const TIME_SERIES = {DAILY, WEEKLY, MONTHLY};
 
@@ -15,7 +15,7 @@ class TimeSeriesButtonGroup extends Component{
   constructor(props){
     super(props);
     this.renderBtn = this.renderBtn.bind(this);
-    this.props.selectTimeSeries(WEEKLY.key);
+    this.props.selectTimeSeries(DAILY.key);
   }
 
   onClick(timeSeries, event){

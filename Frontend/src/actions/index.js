@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 const ROOT_URL = 'https://limen.herokuapp.com';
+// const ROOT_URL = 'http://localhost:7999';
 
 export const FETCH_TIME_SERIES = 'FETCH_TIME_SERIES';
 export const UPDATE_GRAPH = 'UPDATE_GRAPH';

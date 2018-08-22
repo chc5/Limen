@@ -42,7 +42,7 @@ class AlphaVantageParser():
             self.data[group]['predicted'] = {'y': y_set}
             self.data[group]['summary'] = {}
             self.data[group]['summary']['risk_score'] = regressor.get_risk_score()
-            self.data[group]['summary']['coefficients'] = regressor.get_coefficients()
+            # self.data[group]['summary']['coefficients'] = regressor.get_coefficients()
             self.data[group]['summary']['potential_score'] = regressor.get_potential_score()
     def get_data(self):
         return self.data
