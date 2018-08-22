@@ -1,8 +1,9 @@
 # Limen
 ## Inspiration
  - To learn about the stock market.
+ - To create a stock portfolio for future investments.
  - To develop an analysis tool that will make stocks be easier to understand.
- - To build a predictor based on news and historical prices.
+ - To build a predictor based on historical prices.
  - To create a list of safe stocks that are good for investments.
 
 ## Timeline (Work in Progress)
@@ -11,10 +12,12 @@
  - Finished building my Website on React-Redux.
  - Plotted my stock prices and trendline from using polynomial regression on Plotly React.
  - Built a Time Series Predictor from sklearn using polynomial regression of degree 3 (4 or above is overfitting and takes too much time to process.)
+ - Used correlation coefficient for my steady score.
+ - Calculated the derivative of the trend in the stock prices as my potential growth score.
+ - Deployed my Django/React-Redux Application on Heroku.
+ - Automated predictions on thousands of companies listed on NASDAQ and NYSE to make my stock portfolio.
 
 ## Future Goals
- - Deploy my website online.
- - Automate 3300 companies listed on NASDAQ based on my predictor and generate results whether I should invest on this stock or not.
  - Plan to integrate several technical indicators from AlphaVantage and use them for more machine learning models.
 
 ## Apps
@@ -23,4 +26,4 @@
   Retriever - Retrieves stock prices from AlphaVantage.
 
 ## Frontend - Website
-  Website - Runs on a React/Redux Website.
+  Front - Runs on a React/Redux Website.
