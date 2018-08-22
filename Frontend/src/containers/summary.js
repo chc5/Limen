@@ -5,6 +5,7 @@ import { GRAPH_TYPES } from '../containers/graph_type_selection_bar';
 export const SUMMARY = "summary";
 const RISK_SCORE = "risk_score";
 const COEFFICIENTS = "coefficients";
+const POTENTIAL_SCORE = "potential_score";
 class Summary extends Component{
 
   constructor(props){
@@ -35,10 +36,10 @@ class Summary extends Component{
                     The higher the score, the more safe the score.
                   </p>
                   <h5 className="card-title">
-                    Potential Growth: {timeSeries[type][SUMMARY][COEFFICIENTS][3]}
+                    Potential Growth: {timeSeries[type][SUMMARY][POTENTIAL_SCORE]}
                   </h5>
                   <p className="card-text">
-                    This score out of 100 calculates how steady this stock is.
+                    This score calculates how much potential this stock has.
                     The higher the score, the more gains you can potentially earn. <br />
                   </p>
                   <h6 className="card-text text-primary">

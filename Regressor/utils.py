@@ -1,5 +1,6 @@
 import numpy as np
 import pandas as pd
+import math
 from sklearn.linear_model import LinearRegression
 from sklearn.preprocessing import PolynomialFeatures
 import statsmodels.formula.api as sm
@@ -28,6 +29,19 @@ class Regressor():
 
     def get_risk_score(self):
         return self.score
+
+    # Used quadratic formula.
+    def get_potential_score(self):
+        if len(self.x_set) <= 1:
+            return 0
+        d, c, b, a = self.coefficients
+        discriminant = math.sqrt(4 * (b**2) - 12*a*c)
+        x1 = ((-2*b)+discriminant) / (6 * a)
+        y1 = self.model.predict(self.poly_reg.fit_transform(x1))[0]
+        x2 = self.x_set[-1]
+        y2 = self.model.predict(self.poly_reg.fit_transform(x2))[0]
+        slope = (y2 - y1) / (x2 - x1)
+        return '{:0.5f}'.format(slope) * 100
 
     def get_coefficients(self):
         return self.coefficients
