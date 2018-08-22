@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import Plotly from '../components/plotly';
 import MetaData from './meta_data';
 import Summary from './summary';
+import TimeSeriesButtonGroup from './time_series_button_group';
 import Loading, { SMALL_SIZE, LARGE_SIZE} from '../components/loading';
 import { LOADING } from '../actions/index';
 
@@ -20,6 +21,7 @@ class TimeSeriesList extends Component{
       <div key={timeSeriesName} className="row">
         <div className="col-lg-8 col-md-12 col-sm-12 col-xs-12">
           <Plotly timeSeriesName={timeSeriesName} />
+          <TimeSeriesButtonGroup className="" />
         </div>
         <div className="col-lg-4 col-md-12 col-sm-12 col-xs-12">
           <MetaData timeSeriesName={timeSeriesName} />

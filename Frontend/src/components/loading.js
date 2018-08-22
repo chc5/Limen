@@ -11,7 +11,7 @@ const largeText = (
          alt="Loading"/>
     <h2>Loading</h2>
     <h6>Retrieving data from AlphaVantage takes around 30 seconds </h6>
-    <h6> because I am getting access to their data for free.</h6>
+    <h6>Please be patient...</h6>
   </div>
 )
 

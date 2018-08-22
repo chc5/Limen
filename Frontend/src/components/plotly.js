@@ -11,6 +11,7 @@ class Plotly extends Component {
     this.toPlotlyData = this.toPlotlyData.bind(this);
     this.toPredictedPlotlyData = this.toPredictedPlotlyData.bind(this);
     this.getTraceName = this.getTraceName.bind(this);
+    this.toTrendlinePlotly = this.toTrendlinePlotly.bind(this);
   }
 
   getTraceName(keyName){
@@ -44,18 +45,41 @@ class Plotly extends Component {
         'y': timeSeries[type]['predicted']['y'],
         'type': 'scatter',
         'mode': 'lines',
-        'name': this.getTraceName(type)+' Trendline'
+        'name': this.getTraceName(type)+'\'s Polynomial Trendline',
+        'line': {
+          'dash': 'solid',
+          'width': 4
+        }
       };
     });
     return predictedPlotlyData;
   }
 
+  toTrendlinePlotly(){
+    const timeSeries = this.props.timeSeriesList[this.props.timeSeriesName];
+    const trendline = this.props.selectedGraphTypes.map(type => {
+      let x = timeSeries[type]['data']['x'].sort();
+      return {
+        'x': timeSeries[type]['trendline']['x'].map(i => x[i]),
+        'y': timeSeries[type]['trendline']['y'],
+        'type': 'scatter',
+        'mode': 'lines',
+        'name': this.getTraceName(type)+'\'s Linear Trendline',
+        'line': {
+          'dash': 'dashdot',
+          'width': 4
+        }
+      };
+    });
+    return trendline;
+  }
   render(){
     const plotlyData = this.toPlotlyData();
     const predictedPlotlyData = this.toPredictedPlotlyData();
+    const trendlinePlotly = this.toTrendlinePlotly();
     return(
       <div className="Plotly">
-        <Plot data= { [ ...plotlyData, ...predictedPlotlyData ] }
+        <Plot data= { [ ...plotlyData, ...predictedPlotlyData, ...trendlinePlotly ] }
               layout={{
                      autosize: true,
                      legend: {

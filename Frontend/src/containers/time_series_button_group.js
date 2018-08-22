@@ -15,7 +15,7 @@ class TimeSeriesButtonGroup extends Component{
   constructor(props){
     super(props);
     this.renderBtn = this.renderBtn.bind(this);
-    this.props.selectTimeSeries(DAILY.key);
+    // this.props.selectTimeSeries(DAILY.key);
   }
 
   onClick(timeSeries, event){

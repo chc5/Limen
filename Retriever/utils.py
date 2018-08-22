@@ -42,6 +42,8 @@ class AlphaVantageParser():
             self.data[group]['predicted'] = {'y': y_set}
             self.data[group]['summary'] = {}
             self.data[group]['summary']['risk_score'] = regressor.get_risk_score()
+            x1, x2, y1, y2 = regressor.get_trendline()
+            self.data[group]['trendline'] = {'x': [x1, x2], 'y': [y1, y2]}
             # self.data[group]['summary']['coefficients'] = regressor.get_coefficients()
             self.data[group]['summary']['potential_score'] = regressor.get_potential_score()
     def get_data(self):

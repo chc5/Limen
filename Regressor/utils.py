@@ -26,25 +26,34 @@ class Regressor():
         # Note: the coefficients are in orders of 1, x, x^2, x^3
         self.coefficients = [coef for coef in self.model.coef_]
         self.score = '{:0.2f}'.format(self.model.score(x_poly, self.y_set) * 100)
-
-    def get_risk_score(self):
-        return self.score
+        self.__calculate_trendline()
 
     # Used quadratic formula.
-    def get_potential_score(self):
+    def __calculate_trendline(self):
         if len(self.x_set) <= 1:
             return 0
         d, c, b, a = self.coefficients
         discriminant = 4 * (b**2) - 12*a*c
         if discriminant < 0 or a == 0:
-            x1 = self.x_set[0][0]
+            self.x1 = self.x_set[0][0]
         else:
-            x1 = ((-2*b) + math.sqrt(discriminant)) / (6 * a)
-        y1 = self.model.predict(self.poly_reg.fit_transform(x1))[0]
-        x2 = self.x_set[-1][0]
-        y2 = self.model.predict(self.poly_reg.fit_transform(x2))[0]
-        slope = (y2 - y1) / (x2 - x1)
-        return '{:0.2f}'.format(slope)
+            self.x1 = ((-2*b) + math.sqrt(discriminant)) / (6 * a)
+        self.y1 = self.model.predict(self.poly_reg.fit_transform(self.x1))[0]
+        self.x2 = self.x_set[-1][0]
+        self.y2 = self.model.predict(self.poly_reg.fit_transform(self.x2))[0]
+
+    def get_risk_score(self):
+        return self.score
+
+    def get_potential_score(self):
+        slope = (self.y2 - self.y1) / (self.x2 - self.x1)
+        potential_score = round(float(slope), 2)
+        return potential_score
+
+    def get_trendline(self):
+        x1, x2, y1, y2 = int(self.x1), int(self.x2), float(self.y1), float(self.y2)
+        y1, y2 = round(y1, 2), round(y2, 2)
+        return x1, x2, y1, y2
 
     def get_coefficients(self):
         return self.coefficients

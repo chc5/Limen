@@ -24,7 +24,7 @@ CORS_ORIGIN_ALLOW_ALL = True
 
 # DEFAULT CHANGES
 # Change it into True if we have HTTPS connection.
-CSRF_COOKIE_SECURE = True
+# CSRF_COOKIE_SECURE = True
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
