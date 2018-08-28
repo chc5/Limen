@@ -26,7 +26,7 @@ class SearchBar extends Component {
   render(){
     return (
       <form onSubmit={this.onFormSubmit} className="input-group search-bar">
-        <input placeholder="Get stock market data from companies by their symbol."
+        <input placeholder="Enter a stock ticker symbol to begin"
           className="form-control"
           value={this.state.term}
           onChange={this.onInputChange}

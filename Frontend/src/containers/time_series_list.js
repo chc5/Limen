@@ -4,8 +4,9 @@ import Plotly from '../components/plotly';
 import MetaData from './meta_data';
 import Summary from './summary';
 import TimeSeriesButtonGroup from './time_series_button_group';
+import GraphTypeSelectionBar from './graph_type_selection_bar';
 import Loading, { SMALL_SIZE, LARGE_SIZE} from '../components/loading';
-import { LOADING } from '../actions/index';
+import { LOADING, ERROR } from '../actions/index';
 
 export const META_DATA = "Meta Data";
 
@@ -19,6 +20,9 @@ class TimeSeriesList extends Component{
   renderTimeSeries(timeSeriesName){
     return (
       <div key={timeSeriesName} className="row">
+        <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <GraphTypeSelectionBar className="" />
+        </div>
         <div className="col-lg-8 col-md-12 col-sm-12 col-xs-12">
           <Plotly timeSeriesName={timeSeriesName} />
           <TimeSeriesButtonGroup className="" />
@@ -38,6 +42,16 @@ class TimeSeriesList extends Component{
           ? this.props.timeSeriesList
               ? (<Loading size={LARGE_SIZE}/>)
               : (<Loading size={SMALL_SIZE}/>)
+          : ("")
+        }
+        {
+          this.props.display === ERROR
+          ? (
+              <div>
+                <h4>Error has occurred. I apologize for your inconvenience.</h4>
+                <h4>Please enter the correct ticker symbol. Thank you!</h4>
+              </div>
+            )
           : ("")
         }
         { this.props.timeSeriesList

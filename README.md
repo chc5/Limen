@@ -6,7 +6,7 @@
  - To build a predictor based on historical prices.
  - To create a list of safe stocks that are good for investments.
 
-## Timeline (Work in Progress)
+## Timeline
  - Finished creating the basis of a wrapper for AlphaVantage API.
  - Created a Batch Handler to process API requests to 5 requests per minute (Free tier)
  - Finished building my Website on React-Redux.

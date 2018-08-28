@@ -11,6 +11,9 @@ const largeText = (
          alt="Loading"/>
     <h2>Loading</h2>
     <h6>Retrieving data from AlphaVantage takes around 30 seconds </h6>
+    <h6>
+      This website is completely free, which limits this website from getting data immediately.
+    </h6>
     <h6>Please be patient...</h6>
   </div>
 )

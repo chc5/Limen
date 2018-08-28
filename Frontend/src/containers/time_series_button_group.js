@@ -40,7 +40,7 @@ class TimeSeriesButtonGroup extends Component{
 
   render(){
     return(
-      <div className="row time-series-bar" role="toolbar">
+      <div className="ml-1 mr-1 row time-series-bar" role="toolbar">
         { this.props.timeSeriesList
           ? Object.keys(TIME_SERIES).map(name => this.renderBtn(name))
           : ""

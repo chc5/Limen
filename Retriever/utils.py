@@ -49,12 +49,41 @@ class AlphaVantageParser():
     def get_data(self):
         return self.data
 
+class AlphaVantageErrorHandler():
+    INVALID_SYMBOL_KEY = "Error Message"
+    API_OVERLOAD = "Information"
+
+    def __init__(self, json_result):
+        self.error = False
+        self.msg = ""
+        self.checkInvalidSymbolKey(json_result)
+        self.checkAPIOverload(json_result)
+
+    def checkInvalidSymbolKey(self, json_result):
+        if self.INVALID_SYMBOL_KEY in json_result:
+            self.error = True
+            self.msg = "Invalid symbol, please reenter a correct symbol name. Thank you!"
+
+    def checkAPIOverload(self, json_result):
+        if self.API_OVERLOAD in json_result:
+            self.error = True
+            self.msg = "AlphaVantage have denied access to their data. I'm sorry for your inconvenience and please try again."
+        
+    def isAnError(self):
+        return self.error
+
+    def message(self):
+        return self.msg
+
 class DataRetriever():
 
     @staticmethod
     def get_data_from(url):
         BatchHandler.request_access()
-        f = urllib.request.urlopen(url)
+        try:
+            f = urllib.request.urlopen(url)
+        except Exception:
+            return {'Error':'The error has occured '}
         return f.read().decode('utf-8')
 
 class URLBuilder():

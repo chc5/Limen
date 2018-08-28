@@ -5,6 +5,7 @@ from Retriever.models import TimeSeries
 from Retriever.utils import URLBuilder
 from Retriever.utils import DataRetriever
 from Retriever.utils import AlphaVantageParser
+from Retriever.utils import AlphaVantageErrorHandler
 from Limen.settings import ALPHA_VANTAGE_API_KEY
 import json
 import re
@@ -29,6 +30,9 @@ def get(request):
         url = str(url_builder)
         print(url)
         result = json.loads(DataRetriever().get_data_from(url))
+        errorHandler = AlphaVantageErrorHandler(result)
+        if errorHandler.isAnError():
+            return JsonResponse({ 'error': errorHandler.message() })
         parser = AlphaVantageParser(result)
         data[name] = parser.get_data()
     return JsonResponse({ 'data': data })
