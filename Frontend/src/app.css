@@ -59,5 +59,13 @@ body{
 }
 
 .Plotly{
-  
+
+}
+
+.jumbotron{
+  color:black;
+}
+ul{
+  display: inline-block;
+  text-align: left;
 }
