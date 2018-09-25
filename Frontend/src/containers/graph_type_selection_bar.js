@@ -19,7 +19,6 @@ class GraphTypeSelectionBar extends Component {
   constructor(props){
     super(props);
     this.renderCol = this.renderCol.bind(this);
-    this.props.updateGraph(ADJUSTED_CLOSE.key);
   }
 
   onClick(type, event){
