@@ -11,8 +11,9 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 """
 
 import os
+from Limen.secret_keys import DJANGO_SECRET_KEY, AlPHA_VANTAGE_SECRET_KEY
 # API KEYS
-ALPHA_VANTAGE_API_KEY = 'L2Q64VHCLH2NMMN3'
+ALPHA_VANTAGE_API_KEY = ALPHA_VANTAGE_SECRET_KEY
 
 # Cross-Origin Resource Sharing
 # CORS_ORIGIN_WHITELIST = (
@@ -34,7 +35,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'm!ny8_8@jt55t(h9)0+=plj#^a0+yf#ctcx=k!3bh!k9=no(l#'
+SECRET_KEY = DJANGO_SECRET_KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
