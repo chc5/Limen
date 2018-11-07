@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 """
 
 import os
-from Limen.secret_keys import DJANGO_SECRET_KEY, AlPHA_VANTAGE_SECRET_KEY
+from Limen.secret_keys import DJANGO_SECRET_KEY, ALPHA_VANTAGE_SECRET_KEY
 # API KEYS
 ALPHA_VANTAGE_API_KEY = ALPHA_VANTAGE_SECRET_KEY
 
