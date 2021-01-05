@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "ajv": "^6.5.2",
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "lodash": "^4.17.10",
     "plotly.js": "^1.40.0",
     "react": "^16.4.1",
